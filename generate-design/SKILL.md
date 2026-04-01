@@ -297,7 +297,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
    **B) Render the image inline using markdown with the EXPANDED ABSOLUTE file path:**
    ```markdown
-   ![Variant 1](</Users/.../design-skills/generated-designs/<PREFIX>_<URL_ID>_v1.jpg>)
+   ![Variant 1](</Users/.../generate-design/generated-designs/<PREFIX>_<URL_ID>_v1.jpg>)
    ```
    **CRITICAL MUST-DO**: You MUST use the exact absolute file path output by the script in `VARIANT_N_IMG`.
    - **DO NOT** output the literal text `[Image]` or `[Local Image]` instead of the actual image markdown.

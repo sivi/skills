@@ -4,7 +4,7 @@ This file provides guidance to AI agents when working with code in this reposito
 
 This is a skills repository for AI agents (Claude Code, Cursor, Copilot, Windsurf, Cline, etc.) to generate production-ready design assets using the Sivi API. It contains no application code — only skill definition files (`SKILL.md`) that teach AI agents how to call the Sivi Core API via bash scripts.
 
-Skills are installed by users via `npx skills add sivi-ai/generate-design` (see [skills.sh](https://skills.sh/)).
+Skills are installed by users via `npx skills add sivi/skills` (see [skills.sh](https://skills.sh/)).
 
 ## Repository Structure
 

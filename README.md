@@ -11,7 +11,7 @@ Generate design assets from a text prompt. Supports 60+ formats across Instagram
 
 ## Installation
 ```
-npx skills add sivi-ai/design-skills
+npx skills add sivi/skills
 ```
 
 Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, and [17+ other AI agents](https://skills.sh/).

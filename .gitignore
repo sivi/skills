@@ -2,10 +2,13 @@ __references
 
 # Claude folder
 .claude
+.windsurf
+.agents
 
 # OS files
 .DS_Store
 Thumbs.db
+skills-lock.json
 
 # Editor files
 *.swp
