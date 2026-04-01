@@ -1,6 +1,6 @@
 # Sivi Agent Skills
 
-Skills for AI agents to generate production-ready design assets using [Sivi](https://sivi.ai) — ads, social posts, banners, thumbnails, and more from natural language.
+Skills for AI agents to generate production-ready design assets using [Sivi](https://sivi.ai) - ads, social posts, banners, thumbnails, and more from natural language.
 
 ### generate-design
 Generate design assets from a text prompt. Supports 60+ formats across Instagram, Facebook, Twitter, LinkedIn, Pinterest, YouTube, Display Ads, Amazon, Email, and custom dimensions. Returns multiple variants with preview images and edit links.
@@ -51,12 +51,12 @@ Ask your AI agent:
 | Custom | Any width × height |
 
 ### Options
-- **Variants** — Generate 1–4 design variants per request
-- **Brand colors** — Pass hex codes for on-brand output
-- **Theme** — Light, dark, or colorful
-- **Assets** — Include your own logos and images (public URLs)
-- **Language** — Generate text in any supported language
-- **Output format** — JPG or PNG
+- **Variants** - Generate 1–4 design variants per request
+- **Brand colors** - Pass hex codes for on-brand output
+- **Theme** - Light, dark, or colorful
+- **Assets** - Include your own logos and images (public URLs)
+- **Language** - Generate text in any supported language
+- **Output format** - JPG or PNG
 
 ## Structure
 ```
