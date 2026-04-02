@@ -1,6 +1,6 @@
-# Sivi Agent Skills
+# Sivi - Design Agent Skills
 
-Skills for AI agents to generate production-ready design assets using [Sivi](https://sivi.ai) - ads, social posts, banners, thumbnails, and more from natural language.
+Skills for AI agents to generate production-ready design assets such as ads, social posts, banners, thumbnails, and more using [Sivi](https://sivi.ai)'s Large Design Model (LDM).
 
 ### generate-design
 Generate design assets from a text prompt. Supports 60+ formats across Instagram, Facebook, Twitter, LinkedIn, Pinterest, YouTube, Display Ads, Amazon, Email, and custom dimensions. Returns multiple variants with preview images and edit links.
@@ -27,11 +27,14 @@ export SIVI_API_KEY="your-api-key-here"
 
 ## Usage
 Ask your AI agent:
-- "Generate an Instagram story for our summer sale"
-- "Create a Facebook ad for a coffee shop grand opening"
-- "Design a LinkedIn post announcing our Series A"
-- "Make a YouTube thumbnail for a cooking tutorial"
-- "Create a 1920x600 website hero banner for my SaaS landing page"
+- "Create four different Facebook ads. Headline: Refined Sanctuary, Description: Transform your home with KraftHaus Living., Button: Explore Now. Use Logo from https://media.hellosivi.com/logos/s6FVztpTVjO.svg. Brand Colors: #CAAB75, #F8F8F8, #000000"
+- "Make a YouTube thumbnail for a cooking tutorial. Use colors red and yellow."
+- "Create a 1200x600 website hero banner for my SaaS landing page. Logo: https://i.postimg.cc/HLsyY1yQ/334741881-132153419591441-4888262822416491172-n-jpg-stp-dst-jpg-s150x150-tt6-efg-ey-J2ZW5jb2Rl-X3Rh.jpg"
+- "Design 3 Instagram story ads for a fitness app launch. Headline: Your Journey Starts Here. Colors: #FF6B35, #1A1A2E, #FFFFFF"
+- "Generate a Pinterest pin for a vegan recipe blog. Use a dark theme with colors #2D5016, #F5E6CC, and #FFFFFF"
+- "Create a LinkedIn banner for a tech startup. Headline: Building the Future of AI. Logo: https://i.postimg.cc/HLsyY1yQ/334741881-132153419591441-4888262822416491172-n-jpg-stp-dst-jpg-s150x150-tt6-efg-ey-J2ZW5jb2Rl-X3Rh.jpg. Colors: #0A66C2, #FFFFFF, #000000"
+- "Make 2 Amazon product ad variants in square. Title: Premium Wireless Earbuds."
+- "Design an email header image, 600 x 250. Headline: Exclusive Summer Sale. Theme: colorful. Colors: #E91E63, #FFC107, #4CAF50"
 
 ### Supported Platforms
 
