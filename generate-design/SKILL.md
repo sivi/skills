@@ -304,7 +304,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
    - On 422: Tell the user which input parameter is invalid and ask them to correct it
    - On 500: Tell the user the Sivi server errored and suggest retrying
 
-7. **Display results** — after Step B completes, parse its structured output. For EACH variant, display these items in this exact order. **You MUST display the results immediately upon completion. Do NOT ask the user for permission.**
+7. **Display results** — after Step B completes, parse its structured output. For EACH variant, display these items in this exact order. **You MUST display the results immediately upon completion.**
 
    **A) Read the image file:**
    Use your file-reading tool (e.g., `view_file` in Antigravity or `Read` in Claude Code) on the downloaded `.jpg` file. This allows you to visually analyze the generated design.
@@ -355,7 +355,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
    ```
 
    **⚠️ CRITICAL RULES:**
-   - **Display results IMMEDIATELY**. Do not pause to ask if the user wants to see them.
+   - **Display results IMMEDIATELY**.
    - Use `![Variant N](</absolute/path/...jpg>)` with the RESOLVED ABSOLUTE file path. If you emit the string `<SKILL_DIR>`, the image breaks!
    - NEVER output just the text `[Image]` or `[Local Image]` — always write the full markdown image format `![]()`.
    - NEVER put the remote `variantImageUrl` inside `![]()` — it will NOT render.
