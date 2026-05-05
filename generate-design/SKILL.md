@@ -247,6 +247,8 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
      if [ "$VARIANT_COUNT" -gt 0 ]; then
        echo "Found $VARIANT_COUNT variants!"
+       # Note: $VARIANT_COUNT may be less than the requested numOfVariants.
+       # That is OK — proceed with whatever variants are returned.
 
        # Extract and download each variant using python3
        python3 -c "
@@ -396,6 +398,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 - Never call the API without a prompt. Always collect it first.
 - **Prompt fidelity**: Enhancing or rephrasing the user's prompt is acceptable, but all user-provided details (headlines, descriptions, button text, brand names, specific wording, etc.) must appear in the prompt sent to the API. Missing information is a bug.
 - Default `numOfVariants` is `2`. Never exceed `4`.
+- **Variant count tolerance**: The polled response may return fewer variants than `numOfVariants` requested. This is acceptable — proceed and display whatever variants are returned without retrying or erroring.
 - Never hardcode the API key — always use `$SIVI_API_KEY` (sourced from `.env` if needed).
 - If the user doesn't specify `type`/`subtype`, use the default `custom`/`custom` with `800x800` dimensions.
 - Always send all fields in the request body. Use `[]` for unprovided array fields. **Omit the `dimension` field entirely when `type` is not `"custom"`.**
