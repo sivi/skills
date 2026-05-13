@@ -52,6 +52,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
      - `images` — array of objects: `{ "url": "...", "imagePreference": { "crop": null, "removeBg": null } }` — set `crop`/`removeBg` to `null` to let Sivi auto-detect the best settings
      - `logos` — array of objects: `{ "url": "...", "logoStyles": [<styles>] }` — choose `logoStyles` based on analysis (see classification rules). Allowed values: `direct`, `neutral`, `colorful`, `outline`
      - `icons` — array of objects: `{ "url": "..." }` — simple graphic elements or symbols
+     - `siviAssets` — array of uploaded media references (optional): `[{ "mId": "<mId from create-media>" }]`. Use this for local files uploaded via the file upload flow (Step 3a). For public URL assets, use `assets` instead.
    - `numOfVariants` — number of variants (1–4) — default: `2`
    - `outputFormat` — array of formats (allowed values: jpg, png),
    - `language` — language for text elements — default: english (lower case)
@@ -69,10 +70,8 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
 3. **Handle assets** — Collect image, logo, and icon URLs from the prompt text. The Sivi API only accepts **publicly accessible URLs** — local files and uploaded attachments cannot be used.
 
-   **If the user uploads or attaches a local file**, do NOT attempt to use it. Instead, ask them to provide a publicly hosted URL:
-   > "The Sivi API requires publicly accessible image URLs (e.g., from your website, CDN, or image hosting service). Could you share a public URL for this image?"
-
-   **Extract URLs from the prompt** — Scan the prompt text for image URLs (e.g., `https://example.com/photo.jpg`, `https://cdn.site.com/logo.png`). Extract these URLs from the prompt before sending it to the API. Remove the URLs from the prompt text so only the descriptive text remains.
+   **Source 1: Uploaded/attached local files** — If the user has attached or uploaded any local files in the chat. These will be uploaded to Sivi via the file upload API (see Step 3a below). For each file, note its local path and classify it.
+   **Source 2: URLs in the prompt** — Scan the prompt text for any image URLs (e.g., `https://example.com/photo.jpg`, `https://cdn.site.com/logo.png`). Extract these URLs from the prompt before sending it to the API. Remove the URLs from the prompt text so only the descriptive text remains.
 
    **URL validation rules:**
    - Only extract URLs that point to image files (common extensions: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.svg`) or are explicitly described by the user as image/logo assets.
@@ -81,9 +80,15 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
    For each asset URL, analyse and classify it:
 
-   - **Image**: If the asset is a photo, illustration, product shot, screenshot, or any non-logo/non-icon visual — add to `assets.images[]` as `{ "url": "<url>", "imagePreference": { "crop": null, "removeBg": null } }` — `null` values let Sivi auto-detect the best settings
-   - **Logo**: If the asset is a brand logo or identity mark — add to `assets.logos[]` as `{ "url": "<url>", "logoStyles": [<styles>] }`. Choose `logoStyles` based on the logo: `direct` (no change should be made to the original logo), `neutral` (logo can be changed to black/white), `colorful` (logo can be changed to any single color), `outline` (outline can be added around the logo)
-   - **Icon**: If the asset is a simple graphic element or symbol (e.g., a star, arrow, badge) — add to `assets.icons[]` as `{ "url": "<url>" }`
+   - **Logo**: If the asset is a logo, icon, brand mark, or monogram.
+     - For **URL assets**: add to `assets.logos[]` as `{ "url": "<url>", "logoStyles": ["direct", "outline"] }`
+     - For **local files**: note the file path and classification — it will be uploaded in Step 3a, then referenced via `siviAssets[]`
+   - **Image**: If the asset is a photo, illustration, product shot, screenshot, or any non-logo/non-icon visual
+     - For **URL assets**: add to `assets.images[]` as `{ "url": "<url>", "imagePreference": { "crop": null, "removeBg": null } }` — `null` values let Sivi auto-detect the best settings.
+     - For **local files**: note the file path and classification — it will be uploaded in Step 3a, then referenced via `siviAssets[]`
+    - **Icon**: If the asset is a simple graphic element or symbol (e.g., a star, arrow, badge)
+      - For **URL assets**: add to `assets.icons[]` as `{ "url": "<url>" }`
+      - For **local files**: note the file path and classification — it will be uploaded in Step 3a, then referenced via `siviAssets[]`
 
    **Classification rules:**
    - Look at the file/URL content: logos are typically vector-like, transparent background, simple shapes, or contain brand text. Icons are even simpler — single symbols or glyphs. Photos/illustrations are richer, more complex imagery.
@@ -91,6 +96,117 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
    - If the URL or filename contains words like "icon", "symbol", "badge" — classify as **icon**.
    - If unsure, default to **image**.
    - Maximum **5 assets total** (images + logos + icons combined). If the user provides more than 5, use the first 5 and inform them of the limit.
+
+   **Asset routing summary:**
+   - **Public URL assets** → go into `assets.images[]` or `assets.logos[]` in the design payload
+   - **Local file assets** → uploaded via Step 3a, then referenced in `siviAssets[]` in the design payload using the returned `mId`
+
+3a. **Upload local file assets** — For each local file the user attached, upload it to Sivi using this 3-step API flow. Skip this entire step if there are no local files to upload.
+
+   For each local file, determine the media type for the API:
+   - **Logo** files → `type: "logo"`, `subType: "logo"`
+   - **Image** files → `type: "photo"`, `subType: "photograph"`
+
+   Determine the file extension and content type from the file's extension:
+   - `.jpg` / `.jpeg` → `extension: "jpeg"`, `contentType: "image/jpeg"`
+   - `.png` → `extension: "png"`, `contentType: "image/png"`
+   - `.webp` → `extension: "webp"`, `contentType: "image/webp"`
+   - `.svg` → `extension: "svg"`, `contentType: "image/svg+xml"`
+
+   **Use this EXACT script template** for each local file (all 3 upload steps combined into one script):
+
+   ```bash
+   #!/bin/bash
+   set -e
+   source <SKILL_DIR>/.env
+
+   # ✅ Replace placeholders below with actual values
+   LOCAL_FILE="<LOCAL_FILE_PATH>"
+   FILE_TYPE="<FILE_TYPE>"           # "photo" or "logo"
+   FILE_SUBTYPE="<FILE_SUBTYPE>"     # "photograph" or "logo"
+   FILE_EXTENSION="<FILE_EXTENSION>" # "jpeg", "png", "webp", or "svg"
+   CONTENT_TYPE="<CONTENT_TYPE>"     # "image/jpeg", "image/png", etc.
+
+   # Step 1: Get presigned URL
+   PAYLOAD=$(cat <<ENDJSON
+   {
+     "type": "$FILE_TYPE",
+     "extension": "$FILE_EXTENSION",
+     "contentType": "$CONTENT_TYPE"
+   }
+   ENDJSON
+   )
+
+   HTTP_CODE=$(curl -s -o /tmp/sivi_presigned_response.json -w '%{http_code}' \
+     -X POST "https://connect.sivi.ai/api/prod/v2/general/files/get-presigned-url" \
+     -H "Content-Type: application/json" \
+     -H "sivi-api-key: $SIVI_API_KEY" \
+     -d "$PAYLOAD")
+
+   BODY=$(cat /tmp/sivi_presigned_response.json)
+
+   if [ "$HTTP_CODE" != "200" ]; then
+     echo "ERROR: Presigned URL request failed with HTTP $HTTP_CODE"
+     echo "$BODY"
+     exit 1
+   fi
+
+   # Parse uploadUrl and Content-Type from response
+   UPLOAD_URL=$(python3 -c "import json,sys; d=json.load(sys.stdin); print(d['body']['uploadUrl'])" <<< "$BODY")
+   UPLOAD_CONTENT_TYPE=$(python3 -c "import json,sys; d=json.load(sys.stdin); print(d['body']['headers']['Content-Type'])" <<< "$BODY")
+
+   echo "Got presigned URL"
+
+   # Step 2: Upload file to presigned URL
+   HTTP_CODE=$(curl -s -o /dev/null -w '%{http_code}' \
+     -X PUT \
+     -H "Content-Type: $UPLOAD_CONTENT_TYPE" \
+     --data-binary "@$LOCAL_FILE" \
+     "$UPLOAD_URL")
+
+   if [ "$HTTP_CODE" != "200" ]; then
+     echo "ERROR: Upload to presigned URL failed with HTTP $HTTP_CODE"
+     exit 1
+   fi
+
+   echo "File uploaded to presigned URL"
+
+   # Step 3: Create media — register the uploaded file with Sivi
+   PAYLOAD=$(python3 -c "
+   import json
+   print(json.dumps({
+       'type': '$FILE_TYPE',
+       'subType': '$FILE_SUBTYPE',
+       'uploadUrl': '''$UPLOAD_URL'''
+   }))
+   ")
+
+   HTTP_CODE=$(curl -s -o /tmp/sivi_create_media_response.json -w '%{http_code}' \
+     -X POST "https://connect.sivi.ai/api/prod/v2/general/media/create" \
+     -H "Content-Type: application/json" \
+     -H "sivi-api-key: $SIVI_API_KEY" \
+     -d "$PAYLOAD")
+
+   BODY=$(cat /tmp/sivi_create_media_response.json)
+
+   if [ "$HTTP_CODE" != "200" ]; then
+     echo "ERROR: Create media failed with HTTP $HTTP_CODE"
+     echo "$BODY"
+     exit 1
+   fi
+
+   # Parse mId from response
+   M_ID=$(python3 -c "import json,sys; d=json.load(sys.stdin); print(d['body']['media']['mId'])" <<< "$BODY")
+
+   echo "M_ID=$M_ID"
+   ```
+
+   Run this script once per local file. After all local files are uploaded, collect each `mId` and build the `siviAssets` array for the design payload:
+   ```json
+   "siviAssets": [{ "mId": "<mId_from_upload>" }, ...]
+   ```
+
+   If there are no local files, set `siviAssets` to `[]`.
 
 4. **Step A — Submit the design** (Bash tool call #1). Never use WebFetch (it cannot send custom headers and will always return 401).
 
@@ -117,6 +233,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
        "logos": <LOGOS_ARRAY_OR_[]>,
        "icons": <ICONS_ARRAY_OR_[]>
      },
+     "siviAssets": <SIVI_ASSETS_ARRAY_OR_[]>,
      "settings": {
        "mode": "<auto_OR_custom>",
        "colors": <COLORS_ARRAY_OR_[]>,
@@ -179,6 +296,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
        "outputFormat": ["jpg"],
        "language": "english",
        "assets": {"images": [], "logos": []},
+       "siviAssets": [],
        "settings": {
            "mode": "auto",
            "colors": [],
@@ -198,7 +316,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
    This call returns in ~2 seconds. After it returns, **immediately tell the user** that the design is being generated and show the `designId` and `requestId` before proceeding to the next step.
 
-5. **Step B — Poll and download variants** (Bash tool call #2).
+5. **Step B — Poll for completion and download variants** (Bash tool call #2). Uses the `get-request-status` API to poll until the design is `completed` or `failed`.
 
    **Use this EXACT script template:**
 
@@ -214,7 +332,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
    # Ensure PREFIX has no spaces (replace with hyphens)
    PREFIX=$(echo "$PREFIX" | tr ' ' '-')
 
-   DESIGN_ID="<DESIGN_ID_FROM_STEP_A>"
+   REQUEST_ID="<REQUEST_ID_FROM_STEP_A>"
    MAX_ATTEMPTS=20
    ATTEMPT=0
 
@@ -222,12 +340,17 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
      ATTEMPT=$((ATTEMPT + 1))
      echo "Poll attempt $ATTEMPT/$MAX_ATTEMPTS..."
 
+     # URL-encode the queryParams JSON for the GET request
+     QUERY_PARAMS=$(python3 -c "
+   import json, urllib.parse
+   params = json.dumps({'requestId': '''$REQUEST_ID'''})
+   print(urllib.parse.quote(params, safe=''))
+   ")
+
      # ✅ Cross-platform safe: use -o to write body to file, -w to capture status code
      HTTP_CODE=$(curl -s -o /tmp/sivi_poll_response.json -w '%{http_code}' \
-       -X POST "https://connect.sivi.ai/api/prod/v2/general/get-design-variants" \
-       -H "Content-Type: application/json" \
-       -H "sivi-api-key: $SIVI_API_KEY" \
-       -d "{\"designId\":\"$DESIGN_ID\"}")
+       -X GET "https://connect.sivi.ai/api/prod/v2/general/get-request-status?queryParams=$QUERY_PARAMS" \
+       -H "sivi-api-key: $SIVI_API_KEY")
 
      BODY=$(cat /tmp/sivi_poll_response.json)
 
@@ -237,24 +360,33 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
        exit 1
      fi
 
-     # Check if variations array is non-empty using python3
-     VARIANT_COUNT=$(python3 -c "
+     # Parse the request status using python3
+     REQUEST_STATUS=$(python3 -c "
    import json, sys
    d = json.load(sys.stdin)
-   variations = d.get('body', {}).get('variations', [])
-   print(len(variations))
+   print(d.get('body', {}).get('status', 'unknown'))
    " <<< "$BODY")
 
-     if [ "$VARIANT_COUNT" -gt 0 ]; then
-       echo "Found $VARIANT_COUNT variants!"
-       # Note: $VARIANT_COUNT may be less than the requested numOfVariants.
-       # That is OK — proceed with whatever variants are returned.
+     echo "Status: $REQUEST_STATUS"
 
-       # Extract and download each variant using python3
+     if [ "$REQUEST_STATUS" = "failed" ]; then
+       REASON=$(python3 -c "
+   import json, sys
+   d = json.load(sys.stdin)
+   print(d.get('body', {}).get('reason', 'Unknown error'))
+   " <<< "$BODY")
+       echo "FAILED: $REASON"
+       exit 1
+     fi
+
+     if [ "$REQUEST_STATUS" = "completed" ]; then
+       echo "Design generation complete!"
+
+       # Extract variants and their options using python3
        python3 -c "
    import json, sys
    d = json.load(sys.stdin)
-   variations = d.get('body', {}).get('variations', [])
+   variations = d.get('body', {}).get('result', {}).get('variations', [])
    for i, v in enumerate(variations, 1):
        print(f\"VARIANT_{i}_URL={v.get('variantImageUrl', '')}\")
        print(f\"VARIANT_{i}_EDIT={v.get('variantEditLink', '')}\")
@@ -262,11 +394,26 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
        print(f\"VARIANT_{i}_WIDTH={v.get('variantWidth', '')}\")
        print(f\"VARIANT_{i}_HEIGHT={v.get('variantHeight', '')}\")
        print(f\"VARIANT_{i}_TYPE={v.get('variantType', '')}\")
+       options = v.get('options', [])
+       print(f\"VARIANT_{i}_OPTIONS_COUNT={len(options)}\")
+       for j, o in enumerate(options, 1):
+           print(f\"VARIANT_{i}_OPTION_{j}_URL={o.get('variantImageUrl', '')}\")
+           print(f\"VARIANT_{i}_OPTION_{j}_EDIT={o.get('variantEditLink', '')}\")
+           print(f\"VARIANT_{i}_OPTION_{j}_ID={o.get('variantId', '')}\")
+           print(f\"VARIANT_{i}_OPTION_{j}_WIDTH={o.get('variantWidth', '')}\")
+           print(f\"VARIANT_{i}_OPTION_{j}_HEIGHT={o.get('variantHeight', '')}\")
+           print(f\"VARIANT_{i}_OPTION_{j}_TYPE={o.get('variantType', '')}\")
    " <<< "$BODY" > /tmp/sivi_variants_info.txt
 
        cat /tmp/sivi_variants_info.txt
 
-       # Download each variant image
+       VARIANT_COUNT=$(python3 -c "
+   import json, sys
+   d = json.load(sys.stdin)
+   print(len(d.get('body', {}).get('result', {}).get('variations', [])))
+   " <<< "$BODY")
+
+       # Download each variant image and its options
        OUTPUT_DIR="<SKILL_DIR>/generated-designs"
        mkdir -p "$OUTPUT_DIR"
        IDX=1
@@ -276,17 +423,33 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
            # Validate URL starts with https:// before using it
            if [[ "$IMG_URL" != https://* ]]; then
              echo "SKIP: VARIANT_${IDX} URL is not https, skipping for security."
-             IDX=$((IDX + 1))
-             continue
+           else
+             URL_ID=$(basename "$IMG_URL" | sed 's/\.[^.]*$//' | tr -cd '[:alnum:]-_')
+             FILE_NAME="${PREFIX}_${URL_ID}_v${IDX}.jpg"
+             curl -sL -o "$OUTPUT_DIR/${FILE_NAME}" "$IMG_URL"
+             echo "VARIANT_${IDX}_IMG=$OUTPUT_DIR/${FILE_NAME}"
            fi
-           # Extract unique ID from the end of the URL (filename without extension)
-           # Sanitize URL_ID to only allow alphanumeric, hyphens, underscores
-           URL_ID=$(basename "$IMG_URL" | sed 's/\.[^.]*$//' | tr -cd '[:alnum:]-_')
-           FILE_NAME="${PREFIX}_${URL_ID}_v${IDX}.jpg"
-           
-           curl -sL -o "$OUTPUT_DIR/${FILE_NAME}" "$IMG_URL"
-           echo "VARIANT_${IDX}_IMG=$OUTPUT_DIR/${FILE_NAME}"
          fi
+
+         # Download variant options
+         OPTS_COUNT=$(grep "VARIANT_${IDX}_OPTIONS_COUNT=" /tmp/sivi_variants_info.txt | cut -d'=' -f2-)
+         OPTS_COUNT=${OPTS_COUNT:-0}
+         OPT_IDX=1
+         while [ $OPT_IDX -le $OPTS_COUNT ]; do
+           OPT_URL=$(grep "VARIANT_${IDX}_OPTION_${OPT_IDX}_URL=" /tmp/sivi_variants_info.txt | cut -d'=' -f2-)
+           if [ -n "$OPT_URL" ]; then
+             if [[ "$OPT_URL" != https://* ]]; then
+               echo "SKIP: VARIANT_${IDX}_OPTION_${OPT_IDX} URL is not https, skipping for security."
+             else
+               OPT_URL_ID=$(basename "$OPT_URL" | sed 's/\.[^.]*$//' | tr -cd '[:alnum:]-_')
+               OPT_FILE_NAME="${PREFIX}_${OPT_URL_ID}_v${IDX}_opt${OPT_IDX}.jpg"
+               curl -sL -o "$OUTPUT_DIR/${OPT_FILE_NAME}" "$OPT_URL"
+               echo "VARIANT_${IDX}_OPTION_${OPT_IDX}_IMG=$OUTPUT_DIR/${OPT_FILE_NAME}"
+             fi
+           fi
+           OPT_IDX=$((OPT_IDX + 1))
+         done
+
          IDX=$((IDX + 1))
        done
 
@@ -305,6 +468,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
    - On 402: Tell the user they have insufficient Sivi credits
    - On 422: Tell the user which input parameter is invalid and ask them to correct it
    - On 500: Tell the user the Sivi server errored and suggest retrying
+   - On `FAILED` from polling: The design generation failed. Tell the user the `reason` from the response (e.g., "Image url invalid") and suggest they check their inputs and retry.
 
 7. **Display results** — after Step B completes, parse its structured output. For EACH variant, display these items in this exact order. **You MUST display the results immediately upon completion.**
 
@@ -339,6 +503,17 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
    [Preview this design](<variantImageUrl>) | [Edit this design](<variantEditLink>)
 
+   **Options:**
+   >>> Read /Users/.../<PREFIX>_<OPT_URL_ID>_v1_opt1.jpg (tool call) <<<
+
+   ![Option 1](/Users/.../<PREFIX>_<OPT_URL_ID>_v1_opt1.jpg)
+
+   Design size: <optionWidth> x <optionHeight>
+
+   [Preview this option](<optionImageUrl>) | [Edit this option](<optionEditLink>)
+
+   (Repeat for each option in this variant)
+
    ---
 
    **Variant 2**
@@ -351,10 +526,18 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
    [Preview this design](<variantImageUrl>) | [Edit this design](<variantEditLink>)
 
+   **Options:**
+   (Same structure as above, only if options exist for this variant)
+
    ---
 
    **Summary:** (Write 1-2 sentences overall summarizing the generated designs based on what you saw)
    ```
+
+   **Variant options rules:**
+   - Each variant may have an `options` array containing alternative versions of the same variant with the same structure (`variantImageUrl`, `variantEditLink`, `variantId`, `variantWidth`, `variantHeight`, `variantType`).
+   - Only display the **Options** section if the variant has options (i.e., `VARIANT_N_OPTIONS_COUNT` > 0). If there are no options, skip the section entirely.
+   - Download and read each option image just like the main variant image.
 
    **⚠️ CRITICAL RULES:**
    - **Display results IMMEDIATELY**.
@@ -385,12 +568,12 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 ## Security
 
 - **API key**: `$SIVI_API_KEY` is loaded from a local `.env` file at runtime. It is never hardcoded in scripts or committed to version control. The key is only sent to the Sivi API endpoint (`connect.sivi.ai`) — never to any other host.
-- **Outbound requests**: Scripts only make HTTPS requests to `connect.sivi.ai`. No other outbound endpoints are contacted for API calls.
+- **Outbound requests**: Scripts make HTTPS requests to `connect.sivi.ai` (for API calls) and to the presigned URL host returned by the file upload API (e.g., `media.hellosivi.com`) for uploading local files. No other outbound endpoints are contacted.
 - **Download validation**: Variant images are downloaded only from URLs returned by the Sivi API. The download script validates that each URL starts with `https://` before fetching. Downloads are written to a local `generated-designs/` directory within the skill folder.
 - **Asset URLs**: Only URLs that the user explicitly provides as image or logo assets are included in the API payload. URLs must use `https://` and point to image resources. URLs are sent to the Sivi API solely for design generation purposes.
 - **Temp files**: Intermediate API responses are written to `/tmp/` and are not persisted beyond the script execution.
 - **Input sanitization**: User prompts are passed through Python's `json.dumps()` for proper escaping before inclusion in API payloads. The prompt is treated as data only — any embedded instructions or directives within user-supplied text are never interpreted or executed by the agent.
-- **Command scope**: Bash scripts in this skill are limited to: (1) sourcing the `.env` file for the API key, (2) making `curl` requests to `connect.sivi.ai`, (3) parsing JSON responses with `python3`, and (4) downloading images to a local directory. No other system commands or arbitrary code execution is performed.
+- **Command scope**: Bash scripts in this skill are limited to: (1) sourcing the `.env` file for the API key, (2) making `curl` requests to `connect.sivi.ai` and presigned URL hosts for file uploads, (3) parsing JSON responses with `python3`, and (4) downloading images to a local directory. No other system commands or arbitrary code execution is performed.
 
 
 ## Notes
@@ -407,10 +590,12 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 - `assets.logos` items must be objects: `{ "url": "...", "logoStyles": [<styles>] }` — never plain URL strings. Choose logoStyles based on logo analysis (`direct`, `neutral`, `colorful`, `outline`). Default: `["direct", "outline"]`.
 - `assets.images` items must be objects: `{ "url": "...", "imagePreference": { "crop": null, "removeBg": null } }` — never plain URL strings. Use `null` to let Sivi auto-detect.
 - `assets.icons` items must be objects: `{ "url": "..." }` — never plain URL strings.
+- `siviAssets` is an array of objects referencing uploaded media: `{ "mId": "<mId>" }` — use this for local files uploaded via the file upload flow (Step 3a). For public URL assets, use `assets` instead. Set to `[]` when no local files are uploaded.
 - `settings.fontGroups` is an array of font objects with `id`, `name`, `type`, `status`, `addedBy` — not a flat array of strings.
 - **Omit the `dimension` field entirely when `type` is not `"custom"`.** Only include `dimension` with `width` and `height` when `type` is `"custom"`. Both values must be between **200 and 2000** (inclusive). If out of range, do not call the API — ask the user to correct the values first.
 - **⚠️ To display images inline, use markdown with the LOCAL file path:** `![Variant N](/absolute/path/to/..._vN.jpg)` (use the exact path from `VARIANT_N_IMG`). NEVER use the remote `variantImageUrl` in markdown text — it will not render. The remote URL is only used by the bash script to download the file. You must ALSO read the local file using your file-reading tool to see the design and write a summary.
 - **Always display design size** as `Design size: <variantWidth> x <variantHeight>` below each variant image.
-- Variants response is nested: `response.body.variations[]` with `variantImageUrl`, `variantEditLink`, `variantId`, `variantWidth`, `variantHeight`, `variantType` per item.
+- Polling uses `get-request-status` API. Variants response is nested: `response.body.result.variations[]` with `variantImageUrl`, `variantEditLink`, `variantId`, `variantWidth`, `variantHeight`, `variantType` per item. Each variant may also have an `options[]` array with the same structure. When `response.body.status` is `"failed"`, check `response.body.reason` for the error message.
+- The `linkedIn` type with subtype `linkedIn-post` is not supported by the API — use `instagram` / `instagram-post` as the default for professional/social content unless the user specifies otherwise.
 - **⚠️ NEVER use `head -n -1` anywhere.** It does not work on macOS. Always use `curl -s -o <file> -w '%{http_code}'` to separate body from status code.
 - **⚠️ NEVER use `jq`** — it may not be installed. Use `python3` for all JSON parsing.
