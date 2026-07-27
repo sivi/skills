@@ -1,15 +1,23 @@
-# Sivi - Design Agent Skills
+# Sivi — Brand Marketing Skills for AI Agents
 
-Skills for AI agents to generate production-ready design assets such as ads, social posts, banners, thumbnails, and more using [Sivi](https://sivi.ai)'s Large Design Model (LDM).
+A skill system for AI agents (Claude Code, Cursor, Copilot, Windsurf, Cline, etc.) to generate production-ready design assets and manage brand marketing campaigns using [Sivi](https://sivi.ai)'s Large Design Model (LDM).
 
-### generate-design
-Generate design assets from a text prompt. Supports 60+ formats across Instagram, Facebook, Twitter, LinkedIn, Pinterest, YouTube, Display Ads, Amazon, Email, and custom dimensions. Returns multiple variants with preview images and edit links.
+## Skills
 
-```
-/generate-design A bold Instagram post announcing 30% off summer collection
-```
+| Skill | Purpose | Trigger Examples | Status |
+|---|---|---|---|
+| **brand-context** | Extract brand identity from a website URL, register with Sivi, save to `brands/<slug>/brand.md` | "Set up my brand", "extract brand from URL", "brand setup" | Coming soon |
+| **generate-design** | Orchestrates: copy generation → media enhancement (optional) → design generation via Sivi API. Supports prompt mode and content mode | "Create an Instagram post", "make a Facebook ad", "design from my copy" | Available |
+| **write-copy** | Generate 2 structured copy variations only (no API, no design). For standalone copy needs | "Write ad copy", "headline ideas", "just the copy" | Available |
+| **handle-media** | Lightweight image resolver: resolves local files, image URLs, product/webpage URLs, or AI generation into Sivi media references | "Resolve this image", "upload photo for design" | Available |
+| **enhance-media** | AI image generation and enhancement (background removal, quality improvement) | "Enhance my photo", "generate an image", "remove background" | Available |
+| **brand-assets** | Upload local files to Sivi via presigned URL, register in media library | "Upload image", "add logo to brand", "use local file for design" | Coming soon |
+| **manage-brand** | List, update, switch, or archive brand profiles | "List my brands", "update brand colors", "switch brand" | Coming soon |
+| **create-campaign** | One brief → complete multi-channel creative set (IG, FB, LinkedIn, YouTube, email, display) | "Multi-channel campaign", "ads for all platforms", "creative set" | Coming soon |
+| **create-a-plus-content** | Product brief → complete Amazon A+ content module set (logo, hero, features, comparison, lifestyle, specs) | "Amazon A+ content", "EBC", "enhanced brand content", "A+ modules" | Coming soon |
 
 ## Installation
+
 ```
 npx skills add sivi/skills
 ```
@@ -19,24 +27,67 @@ Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, and [17+ other 
 ## Setup
 
 1. Get your API key from [sivi.ai](https://sivi.ai)
-2. Add it to `.claude/skills/generate-design/.env`:
+2. Copy `.env.example` to `.env` at the repository root and add your key:
 
 ```bash
 export SIVI_API_KEY="your-api-key-here"
 ```
 
-## Usage
-Ask your AI agent:
-- "Create four different Facebook ads. Headline: Refined Sanctuary, Description: Transform your home with KraftHaus Living., Button: Explore Now. Use Logo from https://media.hellosivi.com/logos/s6FVztpTVjO.svg. Brand Colors: #CAAB75, #F8F8F8, #000000"
-- "Make a YouTube thumbnail for a cooking tutorial. Use colors red and yellow."
-- "Create a 1200x600 website hero banner for my SaaS landing page. Logo: https://i.postimg.cc/HLsyY1yQ/334741881-132153419591441-4888262822416491172-n-jpg-stp-dst-jpg-s150x150-tt6-efg-ey-J2ZW5jb2Rl-X3Rh.jpg"
-- "Design 3 Instagram story ads for a fitness app launch. Headline: Your Journey Starts Here. Colors: #FF6B35, #1A1A2E, #FFFFFF"
-- "Generate a Pinterest pin for a vegan recipe blog. Use a dark theme with colors #2D5016, #F5E6CC, and #FFFFFF"
-- "Create a LinkedIn banner for a tech startup. Headline: Building the Future of AI. Logo: https://i.postimg.cc/HLsyY1yQ/334741881-132153419591441-4888262822416491172-n-jpg-stp-dst-jpg-s150x150-tt6-efg-ey-J2ZW5jb2Rl-X3Rh.jpg. Colors: #0A66C2, #FFFFFF, #000000"
-- "Make 2 Amazon product ad variants in square. Title: Premium Wireless Earbuds."
-- "Design an email header image, 600 x 250. Headline: Exclusive Summer Sale. Theme: colorful. Colors: #E91E63, #FFC107, #4CAF50"
+## Quick Start
 
-### Supported Platforms
+### 1. Set up a brand (one-time per brand) — *coming soon*
+
+Ask your AI agent:
+> "Set up a brand from https://example.com"
+
+This extracts brand identity (colors, fonts, logo, persona) and saves it to `brands/example/brand.md`. All subsequent design skills will use this brand automatically.
+
+### 2. Generate a design
+
+> "Create an Instagram post for my summer sale — 30% off, targeting women 25-40."
+
+### 3. Write copy
+
+> "Write ad copy for my fitness app. Test different headlines."
+
+### 4. Multi-channel campaign — *coming soon*
+
+> "Create a multi-channel campaign for my summer sale — 30% off, targeting women 25-40. I need Instagram, Facebook, and email."
+
+## Multi-Brand Workspace
+
+An agency can work with multiple brands. Each brand gets its own folder:
+
+```
+brands/
+├── acme-co/
+│   ├── brand.md          ← brand identity + Sivi brandId
+│   ├── assets/           ← logo, product images
+│   └── campaigns/        ← creative output as .html files
+│       ├── summer-sale-2025.html
+│       └── ab-test-headlines.html
+├── globex/
+│   ├── brand.md
+│   ├── assets/
+│   └── campaigns/
+└── _index.md             ← auto-generated brand index
+```
+
+### Campaign Results
+
+Campaign outputs are saved as HTML files with embedded designs and edit buttons:
+
+```html
+### Instagram Post (1080 x 1080)
+
+<img src="https://resources.hellosivi.com/.../ig-post_v1.jpg" alt="Instagram Post" style="box-shadow: 0px 0px 18px rgba(0,0,0,0.18);">
+
+<a class="edit-link" href="https://instant.sivi.ai/#/variant/abc123/independent-design-editor">Edit this design</a>
+```
+
+The HTML file is the single source of truth — open it in any browser to see all designs with edit links.
+
+## Supported Platforms
 
 | Platform | Formats |
 |----------|---------|
@@ -51,25 +102,32 @@ Ask your AI agent:
 | Amazon | Ad, Fullscreen, Square, Rectangle, Standard |
 | Website | Rectangle, Square, Fullscreen HD, Half-page, Hello Bar |
 | Email | Square, Tall, Rectangle, Wide, Small |
-| Custom | Any width × height |
-
-### Options
-- **Variants** - Generate 1–4 design variants per request
-- **Brand colors** - Pass hex codes for on-brand output
-- **Theme** - Light, dark, or colorful
-- **Assets** - Include your own logos and images (public URLs)
-- **Language** - Generate text in any supported language
-- **Output format** - JPG or PNG
+| Custom | Any width × height (200–2000px) |
 
 ## Structure
+
 ```
-.claude/skills/
-  generate-design/
-    SKILL.md
-    .env
+skills/
+  _shared/                    ← script templates (embedded at authoring time)
+    conventions.md
+    channel-matrix.md
+    content-generation.md
+    submit-and-poll-content.sh
+    submit-and-poll-prompt.sh
+    batch-runner.sh
+  generate-design/SKILL.md
+  handle-media/SKILL.md
+  write-copy/SKILL.md
+  brand-context/SKILL.md          ← coming soon
+  enhance-media/SKILL.md
+  brand-assets/SKILL.md           ← coming soon
+  manage-brand/SKILL.md           ← coming soon
+  create-campaign/SKILL.md        ← coming soon
+  create-a-plus-content/SKILL.md  ← coming soon
 ```
 
 ## Prerequisites
+
 - Python 3 (pre-installed on macOS and most Linux)
 - curl (pre-installed on macOS, Linux, Git Bash)
 - [Sivi API key](https://sivi.ai)

@@ -16,3 +16,12 @@ skills-lock.json
 *~
 
 *.env
+
+# Output folders
+generated-designs/
+
+# Brand workspace (runtime data, not skill definitions)
+brands/
+
+# Planning documents
+PLAN.md
