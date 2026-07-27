@@ -1,0 +1,1474 @@
+{
+  "unique-artistic-pair-1": [
+    {
+      "id": "cUop3zgQZzG",
+      "name": "Fraunces 72pt Soft Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cKZKzJdf7LO",
+      "name": "Epilogue Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ctKSmeYtc0Q",
+      "name": "Barlow Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-2": [
+    {
+      "id": "cn2Qnl95qHx",
+      "name": "Epilogue Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cubEhuMsto9",
+      "name": "Fraunces 72pt SuperSoft Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ctKSmeYtc0Q",
+      "name": "Barlow Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-3": [
+    {
+      "id": "ccjLX2vGDQr",
+      "name": "Corben Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cubEhuMsto9",
+      "name": "Fraunces 72pt SuperSoft Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "csxYxWjoqs3",
+      "name": "Epilogue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-4": [
+    {
+      "id": "cKBjfRw6eIl",
+      "name": "Sacramento",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c1L3KmgqKrO",
+      "name": "DM Serif Display Regular",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "csxYxWjoqs3",
+      "name": "Epilogue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-5": [
+    {
+      "id": "cVQgVBfPsrJ",
+      "name": "Barlow Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ctUlQzsP2ED",
+      "name": "Josefin Sans Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cNDgFE1OMMN",
+      "name": "Fraunces 72pt Soft Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-6": [
+    {
+      "id": "cvylafn68O4",
+      "name": "Amatic SC Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cubEhuMsto9",
+      "name": "Fraunces 72pt SuperSoft Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "csxYxWjoqs3",
+      "name": "Epilogue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-7": [
+    {
+      "id": "ctUlQzsP2ED",
+      "name": "Josefin Sans Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cCl1B2J8Ljd",
+      "name": "Barlow Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cNDgFE1OMMN",
+      "name": "Fraunces 72pt Soft Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-8": [
+    {
+      "id": "c1L3KmgqKrO",
+      "name": "DM Serif Display Regular",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cKBjfRw6eIl",
+      "name": "Sacramento",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "csxYxWjoqs3",
+      "name": "Epilogue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-9": [
+    {
+      "id": "cVBFGWpMaT3",
+      "name": "Poppins Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cCl1B2J8Ljd",
+      "name": "Barlow Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cNDgFE1OMMN",
+      "name": "Fraunces 72pt Soft Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-10": [
+    {
+      "id": "cUop3zgQZzG",
+      "name": "Fraunces 72pt Soft Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cKZKzJdf7LO",
+      "name": "Epilogue Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "co4P2qlr3CM",
+      "name": "Corben Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-11": [
+    {
+      "id": "cn2Qnl95qHx",
+      "name": "Epilogue Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cubEhuMsto9",
+      "name": "Fraunces 72pt SuperSoft Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "co4P2qlr3CM",
+      "name": "Corben Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-12": [
+    {
+      "id": "ccjLX2vGDQr",
+      "name": "Corben Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cubEhuMsto9",
+      "name": "Fraunces 72pt SuperSoft Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cKBjfRw6eIl",
+      "name": "Sacramento",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-13": [
+    {
+      "id": "cKBjfRw6eIl",
+      "name": "Sacramento",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cubEhuMsto9",
+      "name": "Fraunces 72pt SuperSoft Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "csxYxWjoqs3",
+      "name": "Epilogue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-14": [
+    {
+      "id": "cVQgVBfPsrJ",
+      "name": "Barlow Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cubEhuMsto9",
+      "name": "Fraunces 72pt SuperSoft Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "csxYxWjoqs3",
+      "name": "Epilogue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-15": [
+    {
+      "id": "cvylafn68O4",
+      "name": "Amatic SC Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cubEhuMsto9",
+      "name": "Fraunces 72pt SuperSoft Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "co4P2qlr3CM",
+      "name": "Corben Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-16": [
+    {
+      "id": "ctUlQzsP2ED",
+      "name": "Josefin Sans Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cubEhuMsto9",
+      "name": "Fraunces 72pt SuperSoft Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "csxYxWjoqs3",
+      "name": "Epilogue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-17": [
+    {
+      "id": "c1L3KmgqKrO",
+      "name": "DM Serif Display Regular",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cubEhuMsto9",
+      "name": "Fraunces 72pt SuperSoft Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "csxYxWjoqs3",
+      "name": "Epilogue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "unique-artistic-pair-18": [
+    {
+      "id": "cVBFGWpMaT3",
+      "name": "Poppins Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cubEhuMsto9",
+      "name": "Fraunces 72pt SuperSoft Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "csxYxWjoqs3",
+      "name": "Epilogue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-1": [
+    {
+      "id": "cuA2ni4kNa1",
+      "name": "Inter Tight Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ctgiVSIoKMq",
+      "name": "Montserrat Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cS7i4dQ4ozC",
+      "name": "Roboto Serif 72pt Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-2": [
+    {
+      "id": "cNepArckwBV",
+      "name": "Montserrat Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "caP815uAMoL",
+      "name": "Inter Tight Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cS7i4dQ4ozC",
+      "name": "Roboto Serif 72pt Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-3": [
+    {
+      "id": "cEzkJJk84y7",
+      "name": "Roboto Serif Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cI2aiYN0MSX",
+      "name": "DM Sans 36pt Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "gExL8SZHkm",
+      "name": "Inter 24pt Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-4": [
+    {
+      "id": "cIBbMFPes0N",
+      "name": "DM Sans 36pt Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cXyKNJ5iBM6",
+      "name": "Roboto Serif 36pt Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "gExL8SZHkm",
+      "name": "Inter 24pt Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-5": [
+    {
+      "id": "ci7mEZpTgsQ",
+      "name": "Space Grotesk Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cXyKNJ5iBM6",
+      "name": "Roboto Serif 36pt Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "gExL8SZHkm",
+      "name": "Inter 24pt Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-6": [
+    {
+      "id": "cAPHBHNWtUY",
+      "name": "Work Sans Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "caP815uAMoL",
+      "name": "Inter Tight Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cj7Zi6gsV0p",
+      "name": "Montserrat Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-7": [
+    {
+      "id": "c0wuK6Aue6W",
+      "name": "Plus Jakarta Sans Regular",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "caP815uAMoL",
+      "name": "Inter Tight Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cj7Zi6gsV0p",
+      "name": "Montserrat Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-8": [
+    {
+      "id": "cuA2ni4kNa1",
+      "name": "Inter Tight Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ctgiVSIoKMq",
+      "name": "Montserrat Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cSSxr3ZqFOh",
+      "name": "DM Sans 36pt Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-9": [
+    {
+      "id": "cNepArckwBV",
+      "name": "Montserrat Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "caP815uAMoL",
+      "name": "Inter Tight Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cSSxr3ZqFOh",
+      "name": "DM Sans 36pt Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-10": [
+    {
+      "id": "cEzkJJk84y7",
+      "name": "Roboto Serif Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "caP815uAMoL",
+      "name": "Inter Tight Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cj7Zi6gsV0p",
+      "name": "Montserrat Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-11": [
+    {
+      "id": "cIBbMFPes0N",
+      "name": "DM Sans 36pt Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "caP815uAMoL",
+      "name": "Inter Tight Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cj7Zi6gsV0p",
+      "name": "Montserrat Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-12": [
+    {
+      "id": "ci7mEZpTgsQ",
+      "name": "Space Grotesk Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "caP815uAMoL",
+      "name": "Inter Tight Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cj7Zi6gsV0p",
+      "name": "Montserrat Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-13": [
+    {
+      "id": "cAPHBHNWtUY",
+      "name": "Work Sans Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "caP815uAMoL",
+      "name": "Inter Tight Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cS7i4dQ4ozC",
+      "name": "Roboto Serif 72pt Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "modern-minimalist-pair-14": [
+    {
+      "id": "c0wuK6Aue6W",
+      "name": "Plus Jakarta Sans Regular",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "caP815uAMoL",
+      "name": "Inter Tight Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cS7i4dQ4ozC",
+      "name": "Roboto Serif 72pt Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-1": [
+    {
+      "id": "clryrK8HDXZ",
+      "name": "Playfair Display SC Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c986fFWwQpV",
+      "name": "Merriweather Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c2tdSXxyuGG",
+      "name": "Public Sans Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-2": [
+    {
+      "id": "cwkDP3ZP4KC",
+      "name": "Merriweather Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c2tdSXxyuGG",
+      "name": "Public Sans Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-3": [
+    {
+      "id": "cfbJw54hcVB",
+      "name": "Prata Regular",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c2tdSXxyuGG",
+      "name": "Public Sans Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-4": [
+    {
+      "id": "cB1cgx1DlJz",
+      "name": "Manrope ExtraBold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c2tdSXxyuGG",
+      "name": "Public Sans Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-5": [
+    {
+      "id": "ciRURCmGFYe",
+      "name": "Libre Baskerville Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c2tdSXxyuGG",
+      "name": "Public Sans Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-6": [
+    {
+      "id": "cXwrGhjwkXx",
+      "name": "Public Sans Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cseS4zPj3NF",
+      "name": "Raleway Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-7": [
+    {
+      "id": "cGj2iZUPpiK",
+      "name": "Cormorant Infant Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c2tdSXxyuGG",
+      "name": "Public Sans Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-8": [
+    {
+      "id": "cUvf61bVjHA",
+      "name": "Bodoni Moda 9pt Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c2tdSXxyuGG",
+      "name": "Public Sans Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-9": [
+    {
+      "id": "cL9esgNHvev",
+      "name": "Raleway Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cUnxCOcA6wD",
+      "name": "Public Sans Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cgiBVLcYkIW",
+      "name": "Playfair Display SC Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-10": [
+    {
+      "id": "clryrK8HDXZ",
+      "name": "Playfair Display SC Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c986fFWwQpV",
+      "name": "Merriweather Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cfbJw54hcVB",
+      "name": "Prata Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-11": [
+    {
+      "id": "cwkDP3ZP4KC",
+      "name": "Merriweather Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cfbJw54hcVB",
+      "name": "Prata Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-12": [
+    {
+      "id": "cfbJw54hcVB",
+      "name": "Prata Regular",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c8nc4FACsrf",
+      "name": "Merriweather Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-13": [
+    {
+      "id": "cB1cgx1DlJz",
+      "name": "Manrope ExtraBold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c8nc4FACsrf",
+      "name": "Merriweather Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-14": [
+    {
+      "id": "ciRURCmGFYe",
+      "name": "Libre Baskerville Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c8nc4FACsrf",
+      "name": "Merriweather Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-15": [
+    {
+      "id": "cXwrGhjwkXx",
+      "name": "Public Sans Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c8nc4FACsrf",
+      "name": "Merriweather Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-16": [
+    {
+      "id": "cGj2iZUPpiK",
+      "name": "Cormorant Infant Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c8nc4FACsrf",
+      "name": "Merriweather Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-17": [
+    {
+      "id": "cUvf61bVjHA",
+      "name": "Bodoni Moda 9pt Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c8nc4FACsrf",
+      "name": "Merriweather Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "classic-elegant-pair-18": [
+    {
+      "id": "cL9esgNHvev",
+      "name": "Raleway Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cmtS3ipssfl",
+      "name": "Playfair Display SC Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "c8nc4FACsrf",
+      "name": "Merriweather Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-1": [
+    {
+      "id": "cFdeEJYPlsz",
+      "name": "Oswald Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ciQAA1dfGY1",
+      "name": "Bebas Neue Regular",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cn36JepO1Dl",
+      "name": "Heebo Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-2": [
+    {
+      "id": "ciQAA1dfGY1",
+      "name": "Bebas Neue Regular",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cFdeEJYPlsz",
+      "name": "Oswald Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cn36JepO1Dl",
+      "name": "Heebo Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-3": [
+    {
+      "id": "c1dEwpsVXaK",
+      "name": "Heebo Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cXYPd2WXX2c",
+      "name": "Hind Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cafRCusYYIw",
+      "name": "Oswald Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-4": [
+    {
+      "id": "crNYXQUvA2Y",
+      "name": "Archivo Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cLcCBbMtxb4",
+      "name": "Heebo Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cafRCusYYIw",
+      "name": "Oswald Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-5": [
+    {
+      "id": "cXYPd2WXX2c",
+      "name": "Hind Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cLcCBbMtxb4",
+      "name": "Heebo Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cafRCusYYIw",
+      "name": "Oswald Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-6": [
+    {
+      "id": "coMiGyiOpz8",
+      "name": "Lato Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cFdeEJYPlsz",
+      "name": "Oswald Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ciQAA1dfGY1",
+      "name": "Bebas Neue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-7": [
+    {
+      "id": "c8e15ezpHLy",
+      "name": "Chivo Mono Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cLcCBbMtxb4",
+      "name": "Heebo Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cafRCusYYIw",
+      "name": "Oswald Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-8": [
+    {
+      "id": "cFdeEJYPlsz",
+      "name": "Oswald Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ciQAA1dfGY1",
+      "name": "Bebas Neue Regular",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cDn03s7Oudd",
+      "name": "Archivo Black Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-9": [
+    {
+      "id": "ciQAA1dfGY1",
+      "name": "Bebas Neue Regular",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cFdeEJYPlsz",
+      "name": "Oswald Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cDn03s7Oudd",
+      "name": "Archivo Black Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-10": [
+    {
+      "id": "c1dEwpsVXaK",
+      "name": "Heebo Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cFdeEJYPlsz",
+      "name": "Oswald Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ciQAA1dfGY1",
+      "name": "Bebas Neue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-11": [
+    {
+      "id": "crNYXQUvA2Y",
+      "name": "Archivo Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cFdeEJYPlsz",
+      "name": "Oswald Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ciQAA1dfGY1",
+      "name": "Bebas Neue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-12": [
+    {
+      "id": "cXYPd2WXX2c",
+      "name": "Hind Bold",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cFdeEJYPlsz",
+      "name": "Oswald Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ciQAA1dfGY1",
+      "name": "Bebas Neue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-13": [
+    {
+      "id": "coMiGyiOpz8",
+      "name": "Lato Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cFdeEJYPlsz",
+      "name": "Oswald Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cn36JepO1Dl",
+      "name": "Heebo Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ],
+  "bold-impactful-pair-14": [
+    {
+      "id": "c8e15ezpHLy",
+      "name": "Chivo Mono Black",
+      "type": "heading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "cFdeEJYPlsz",
+      "name": "Oswald Bold",
+      "type": "subHeading",
+      "status": "enabled",
+      "addedBy": "system"
+    },
+    {
+      "id": "ciQAA1dfGY1",
+      "name": "Bebas Neue Regular",
+      "type": "body",
+      "status": "enabled",
+      "addedBy": "system"
+    }
+  ]
+}
