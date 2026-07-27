@@ -24,7 +24,7 @@ BODY=$(cat /tmp/sivi_response.json)
 ## API Key
 
 - Always sourced from `.env` via `$SIVI_API_KEY` — never hardcoded.
-- Load with `source <SKILL_REPO>/.env` at the top of every script (the `.env` file lives at the repository root, shared by all skills).
+- The single `.env` lives in the **`setup-sivi`** skill folder, shared by all skills (no copies). Load it with the `$SIVI_HOME` discovery header documented in `setup-sivi/SKILL.md`, then `source "$SIVI_HOME/.env"`. Skills never copy the `.env` — they resolve the sibling `setup-sivi` folder at runtime. If `$SIVI_HOME`/`.env` can't be found, the user must run the `setup-sivi` skill first.
 - The key is only sent to `connect.sivi.ai` — never to any other host.
 
 ## API Base URL

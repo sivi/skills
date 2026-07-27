@@ -11,6 +11,7 @@ Skills are installed by users via `npx skills add sivi/skills` (see [skills.sh](
 Skills are organized in three layers:
 
 ### Layer 0 — Foundation
+- **`setup-sivi`** — One-time setup and the **shared home**. Creates the single `.env` (captures `SIVI_API_KEY`, verifies it) and owns the `_shared/` reference files. Every other skill resolves this folder at runtime as `$SIVI_HOME` and sources its `.env` — no copies. Run this before any design/media skill.
 - **`brand-context`** *(coming soon)* — Creates a brand profile via two paths: (A) extract from a URL, or (B) create from name + description. Checks Sivi workspace for existing brands before creating. Registers with Sivi, creates `brands/<slug>/brand.md`. All other skills depend on this.
 
 ### Layer 1 — Atomic engines (single API job)
@@ -45,6 +46,9 @@ Agents route a user prompt to a skill by matching the skill's frontmatter `descr
 Each skill lives in its own directory with a `SKILL.md` file:
 
 ```
+setup-sivi/SKILL.md             — one-time setup + shared home (.env + _shared/)
+setup-sivi/.env.example         — API key template (copied to setup-sivi/.env at setup)
+setup-sivi/_shared/             — canonical reference files, referenced by all skills
 generate-design/SKILL.md       — design generation skill
 handle-media/SKILL.md           — lightweight image resolver
 write-copy/SKILL.md             — standalone copy generation
@@ -53,7 +57,7 @@ brand-context/SKILL.md         — brand extraction and setup (coming soon)
 create-campaign/SKILL.md       — multi-channel campaign composite (coming soon)
 ```
 
-The `_shared/` directory contains canonical reference files that skills point to at runtime (the agent reads them and follows the pattern):
+The `setup-sivi/_shared/` directory contains canonical reference files that skills point to at runtime (the agent reads them and follows the pattern). After `npx skills add sivi/skills`, every skill installs as a flat sibling (e.g. `.agents/skills/<skill>/`, mirrored by symlinks under `.claude/skills/`) — there is **no repo root** on the user's machine. So the shared surface (`.env` + `_shared/`) lives inside the **`setup-sivi`** skill, and sibling skills resolve it at runtime via the `$SIVI_HOME` discovery header (documented in `setup-sivi/SKILL.md`). Nothing is copied between skills — `setup-sivi` is the single source of truth. Markdown references from a sibling skill use the relative path `../setup-sivi/_shared/<file>`; bash uses `$SIVI_HOME/_shared/<file>`.
 
 - **`submit-and-poll-content.sh`** — Single design submit + poll + download via `designs-from-content` (copy-first, default). The canonical execution engine. Used by `generate-design` and all composites (called once per design).
 - **`submit-and-poll-prompt.sh`** — Single design submit + poll + download via `designs-from-prompt` (direct generation, no copy review). Alternative to the content script.
@@ -124,7 +128,7 @@ The body is markdown documentation that agents consume to learn the API workflow
 ## Conventions
 
 - **Spelling**: "Sivi" (capital S). The API base URL is `https://connect.sivi.ai`.
-- **API key**: Always sourced from `.env` at the repository root via `$SIVI_API_KEY` — never hardcoded.
+- **API key**: Always sourced from the single `.env` in the `setup-sivi` skill folder via `$SIVI_API_KEY` — never hardcoded, never copied per-skill. Skills resolve it through the `$SIVI_HOME` discovery header (see `setup-sivi/SKILL.md`).
 - **Cross-platform**: Scripts must work on macOS, Linux, and Windows (Git Bash / WSL). Never use `head -n -1` or `jq`. Use `python3` for JSON parsing and `curl -o` for response handling.
 - **Per-design execution**: Composites call `generate-design`'s submit-and-poll pattern (`_shared/submit-and-poll-content.sh`) once per design, not batch submission.
 - **numOfVariants**: Default is `1`. Range is 1–4. Never exceed 4.

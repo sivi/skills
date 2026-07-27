@@ -36,14 +36,20 @@ If `prompt` is missing, ask: "What image would you like to generate or how would
 
 ### 2. Resolve brand
 
-Follow the **Active Brand Resolution** flow in `_shared/conventions.md`. A brand **must** be resolved — `bId` is mandatory for the generate API.
+Follow the **Active Brand Resolution** flow in `../setup-sivi/_shared/conventions.md`. A brand **must** be resolved — `bId` is mandatory for the generate API.
 
 ### 3. Step A — Submit generate request (Bash tool call #1)
 
 ```bash
 #!/bin/bash
 set -e
-source <SKILL_REPO>/.env
+# --- load the Sivi API key from the setup-sivi skill (see setup-sivi/SKILL.md) ---
+for c in ".agents/skills/setup-sivi" ".claude/skills/setup-sivi" \
+         "$HOME/.agents/skills/setup-sivi" "$HOME/.claude/skills/setup-sivi"; do
+  [ -f "$c/.env" ] && { SIVI_HOME="$(cd "$c" && pwd)"; break; }
+done
+[ -z "$SIVI_HOME" ] && { echo "Sivi not set up — run the setup-sivi skill first." >&2; exit 1; }
+source "$SIVI_HOME/.env"
 
 BRAND_ID="<BRAND_ID>"
 
@@ -87,7 +93,13 @@ echo "REQUEST_ID=$REQUEST_ID"
 ```bash
 #!/bin/bash
 set -e
-source <SKILL_REPO>/.env
+# --- load the Sivi API key from the setup-sivi skill (see setup-sivi/SKILL.md) ---
+for c in ".agents/skills/setup-sivi" ".claude/skills/setup-sivi" \
+         "$HOME/.agents/skills/setup-sivi" "$HOME/.claude/skills/setup-sivi"; do
+  [ -f "$c/.env" ] && { SIVI_HOME="$(cd "$c" && pwd)"; break; }
+done
+[ -z "$SIVI_HOME" ] && { echo "Sivi not set up — run the setup-sivi skill first." >&2; exit 1; }
+source "$SIVI_HOME/.env"
 
 REQUEST_ID="<REQUEST_ID_FROM_STEP_A>"
 MAX_ATTEMPTS=30

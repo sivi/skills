@@ -9,7 +9,23 @@
 # For copy-first generation with approved copy, use submit-and-poll-content.sh instead.
 
 set -e
-source <SKILL_REPO>/.env
+
+# --- locate the Sivi shared home (setup-sivi) → $SIVI_HOME, then load the key ---
+# This script lives in setup-sivi/_shared/, so its own dir's parent is $SIVI_HOME.
+# Fall back to the known install roots (relative to the project cwd) if run out of place.
+if [ -z "$SIVI_HOME" ]; then
+  _sd="$(cd "$(dirname "${BASH_SOURCE[0]:-$0}")" 2>/dev/null && pwd)"
+  for c in "$_sd/.." \
+           ".agents/skills/setup-sivi" ".claude/skills/setup-sivi" \
+           "$HOME/.agents/skills/setup-sivi" "$HOME/.claude/skills/setup-sivi"; do
+    if [ -f "$c/.env" ]; then SIVI_HOME="$(cd "$c" && pwd)"; break; fi
+  done
+fi
+if [ -z "$SIVI_HOME" ]; then
+  echo "Sivi is not set up. Run the setup-sivi skill first (it creates .env)." >&2
+  exit 1
+fi
+source "$SIVI_HOME/.env"
 
 # ============================================================================
 # STEP A: Submit via designs-from-prompt (direct generation, no copy review)

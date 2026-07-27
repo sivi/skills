@@ -73,7 +73,13 @@ Determine file extension and content type:
 ```bash
 #!/bin/bash
 set -e
-source <SKILL_REPO>/.env
+# --- load the Sivi API key from the setup-sivi skill (see setup-sivi/SKILL.md) ---
+for c in ".agents/skills/setup-sivi" ".claude/skills/setup-sivi" \
+         "$HOME/.agents/skills/setup-sivi" "$HOME/.claude/skills/setup-sivi"; do
+  [ -f "$c/.env" ] && { SIVI_HOME="$(cd "$c" && pwd)"; break; }
+done
+[ -z "$SIVI_HOME" ] && { echo "Sivi not set up — run the setup-sivi skill first." >&2; exit 1; }
+source "$SIVI_HOME/.env"
 
 # ✅ Replace placeholders below with actual values
 LOCAL_FILE="<LOCAL_FILE_PATH>"
@@ -172,7 +178,13 @@ Call `create-media` with the `url` parameter. Sivi fetches and stores the image.
 ```bash
 #!/bin/bash
 set -e
-source <SKILL_REPO>/.env
+# --- load the Sivi API key from the setup-sivi skill (see setup-sivi/SKILL.md) ---
+for c in ".agents/skills/setup-sivi" ".claude/skills/setup-sivi" \
+         "$HOME/.agents/skills/setup-sivi" "$HOME/.claude/skills/setup-sivi"; do
+  [ -f "$c/.env" ] && { SIVI_HOME="$(cd "$c" && pwd)"; break; }
+done
+[ -z "$SIVI_HOME" ] && { echo "Sivi not set up — run the setup-sivi skill first." >&2; exit 1; }
+source "$SIVI_HOME/.env"
 
 IMAGE_URL="<DIRECT_IMAGE_URL>"
 FILE_TYPE="<photo_OR_logo>"
@@ -223,7 +235,13 @@ Call `create-media` with the `url` parameter set to the webpage URL. Sivi auto-p
 ```bash
 #!/bin/bash
 set -e
-source <SKILL_REPO>/.env
+# --- load the Sivi API key from the setup-sivi skill (see setup-sivi/SKILL.md) ---
+for c in ".agents/skills/setup-sivi" ".claude/skills/setup-sivi" \
+         "$HOME/.agents/skills/setup-sivi" "$HOME/.claude/skills/setup-sivi"; do
+  [ -f "$c/.env" ] && { SIVI_HOME="$(cd "$c" && pwd)"; break; }
+done
+[ -z "$SIVI_HOME" ] && { echo "Sivi not set up — run the setup-sivi skill first." >&2; exit 1; }
+source "$SIVI_HOME/.env"
 
 WEBPAGE_URL="<PRODUCT_OR_WEBPAGE_URL>"
 FILE_TYPE="<photo_OR_logo>"
@@ -302,7 +320,13 @@ Select the closest supported dimension matching the design's aspect ratio. For w
 ```bash
 #!/bin/bash
 set -e
-source <SKILL_REPO>/.env
+# --- load the Sivi API key from the setup-sivi skill (see setup-sivi/SKILL.md) ---
+for c in ".agents/skills/setup-sivi" ".claude/skills/setup-sivi" \
+         "$HOME/.agents/skills/setup-sivi" "$HOME/.claude/skills/setup-sivi"; do
+  [ -f "$c/.env" ] && { SIVI_HOME="$(cd "$c" && pwd)"; break; }
+done
+[ -z "$SIVI_HOME" ] && { echo "Sivi not set up — run the setup-sivi skill first." >&2; exit 1; }
+source "$SIVI_HOME/.env"
 
 PROMPT_TEXT="<IMAGE_GENERATION_PROMPT>"
 WIDTH="<WIDTH>"
@@ -346,7 +370,13 @@ Then poll for the result:
 ```bash
 #!/bin/bash
 set -e
-source <SKILL_REPO>/.env
+# --- load the Sivi API key from the setup-sivi skill (see setup-sivi/SKILL.md) ---
+for c in ".agents/skills/setup-sivi" ".claude/skills/setup-sivi" \
+         "$HOME/.agents/skills/setup-sivi" "$HOME/.claude/skills/setup-sivi"; do
+  [ -f "$c/.env" ] && { SIVI_HOME="$(cd "$c" && pwd)"; break; }
+done
+[ -z "$SIVI_HOME" ] && { echo "Sivi not set up — run the setup-sivi skill first." >&2; exit 1; }
+source "$SIVI_HOME/.env"
 
 REQUEST_ID="<REQUEST_ID_FROM_ABOVE>"
 MAX_ATTEMPTS=30

@@ -27,7 +27,13 @@ Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, and [17+ other 
 ## Setup
 
 1. Get your API key from [sivi.ai](https://sivi.ai)
-2. Copy `.env.example` to `.env` at the repository root and add your key:
+2. Run the **setup-sivi** skill once — ask your AI agent:
+
+   > "Set up Sivi with my API key"
+
+   It creates `.env` (from `.env.example`) inside the `setup-sivi` skill, saves your key, and verifies it. Every other Sivi skill finds this one `.env` automatically — you never copy it or configure keys per skill.
+
+   Prefer to do it by hand? Copy `setup-sivi/.env.example` to `setup-sivi/.env` and set your key:
 
 ```bash
 export SIVI_API_KEY="your-api-key-here"
@@ -106,15 +112,20 @@ The HTML file is the single source of truth — open it in any browser to see al
 
 ## Structure
 
+Skills install as flat siblings (`.agents/skills/<skill>/`, mirrored by symlinks under `.claude/skills/`). There is no repo root on the user's machine, so the shared surface — the single `.env` and the `_shared/` reference files — lives inside the **setup-sivi** skill. Every other skill resolves it at runtime as `$SIVI_HOME`; nothing is copied.
+
 ```
 skills/
-  _shared/                    ← script templates (embedded at authoring time)
-    conventions.md
-    channel-matrix.md
-    content-generation.md
-    submit-and-poll-content.sh
-    submit-and-poll-prompt.sh
-    batch-runner.sh
+  setup-sivi/                 ← run once; the shared home
+    SKILL.md                  ← env setup + verify
+    .env.example              ← copied to setup-sivi/.env at setup
+    _shared/                  ← referenced in place by every skill (no copies)
+      conventions.md
+      channel-matrix.md
+      content-generation.md
+      submit-and-poll-content.sh
+      submit-and-poll-prompt.sh
+      campaign-result.html
   generate-design/SKILL.md
   handle-media/SKILL.md
   write-copy/SKILL.md

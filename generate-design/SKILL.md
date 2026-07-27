@@ -96,7 +96,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
    **1.2 — Resolve brand**
 
-   Follow the **Active Brand Resolution** flow in `_shared/conventions.md`. This includes matching the prompt against local brands, listing available brands for user selection when no match is found, and building the `settings` object (mode, currentbId, colors, theme, frameStyle, backdropStyle, focus, imageStyle, fontGroups) based on the resolution outcome. Always include `designModel` in the resolved `settings` object.
+   Follow the **Active Brand Resolution** flow in `../setup-sivi/_shared/conventions.md`. This includes matching the prompt against local brands, listing available brands for user selection when no match is found, and building the `settings` object (mode, currentbId, colors, theme, frameStyle, backdropStyle, focus, imageStyle, fontGroups) based on the resolution outcome. Always include `designModel` in the resolved `settings` object.
 
    The resolved `settings` object from this step is referred to as `<SETTINGS_OBJECT>` in the payload templates below.
 
@@ -121,7 +121,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
    **2.2 — Generate copy** (skip if user already provided approved copy).
 
-   Follow the instructions in `_shared/content-generation.md` to generate **one** copy variation. **Do NOT ask the user to review or approve the copy** — generate it, display it, and proceed to the next step.
+   Follow the instructions in `../setup-sivi/_shared/content-generation.md` to generate **one** copy variation. **Do NOT ask the user to review or approve the copy** — generate it, display it, and proceed to the next step.
 
    If `<INSPIRATION>` was resolved in Step 1.3, use it to inform copy tone, style, messaging cues, and content structure — the copy should feel like it belongs alongside the referenced visual style.
 
@@ -285,7 +285,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
       **First, determine the design size (W×H):**
       - If `type` is `custom` → use the `dimension` `{width, height}` from the parsed arguments.
-      - For all standard types → look up the subtype's dimensions in `_shared/channel-matrix.md` (each subtype has an explicit `width x height`, e.g. `linkedIn-post` → 1200×627, `instagram-story` → 1080×1920). This is the design size.
+      - For all standard types → look up the subtype's dimensions in `../setup-sivi/_shared/channel-matrix.md` (each subtype has an explicit `width x height`, e.g. `linkedIn-post` → 1200×627, `instagram-story` → 1080×1920). This is the design size.
 
       **Then pick the image dimensions from the composition mode chosen in 3.3.2:**
       - **Background mode** (image fills the canvas behind the text) → target the **full design size**. Choose the supported dimension whose aspect ratio is closest to the design's W×H, so the image covers the whole canvas cleanly.
@@ -314,15 +314,15 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
    **Always use `designs-from-content` (the default) unless the user explicitly asks for `designs-from-prompt`.** The full workflow — copy generation (Step 2.2), image generation (Step 3.3), and design submission — always uses `designs-from-content`. Only switch to `designs-from-prompt` when the user explicitly requests direct generation directly from prompt.
 
-   **Use the canonical script template in `_shared/`.** Two self-contained scripts are available:
-   - **`_shared/submit-and-poll-content.sh`** — `designs-from-content` submit + poll + download (default). Use when the user has approved copy.
-   - **`_shared/submit-and-poll-prompt.sh`** — `designs-from-prompt` submit + poll + download (alternative). Use when the user explicitly requests direct generation.
+   **Use the canonical script template in `../setup-sivi/_shared/`.** Two self-contained scripts are available:
+   - **`../setup-sivi/_shared/submit-and-poll-content.sh`** — `designs-from-content` submit + poll + download (default). Use when the user has approved copy.
+   - **`../setup-sivi/_shared/submit-and-poll-prompt.sh`** — `designs-from-prompt` submit + poll + download (alternative). Use when the user explicitly requests direct generation.
 
    Read the appropriate script and follow it as a single bash script. Fill in all placeholders with values from the parsed arguments and previous steps.
 
    ### 4A — `designs-from-content` (default — copy-first)
 
-   When the user has approved copy (from step 2.2 or provided directly), use `_shared/submit-and-poll-content.sh`. The `content` field contains the Sivi semantic JSON object. The `prompt` field is replaced by `name` + `content`.
+   When the user has approved copy (from step 2.2 or provided directly), use `../setup-sivi/_shared/submit-and-poll-content.sh`. The `content` field contains the Sivi semantic JSON object. The `prompt` field is replaced by `name` + `content`.
 
    **Content mode notes:**
    - Replace `<CONTENT_JSON>` with the actual approved copy JSON object (e.g., `{"title": "Summer Sale", "offer": "30% Off", "button": "Shop Now"}`).
@@ -336,7 +336,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
    ### 4B — `designs-from-prompt` (alternative — direct generation)
 
-   When the user wants to generate designs directly without a copy review step, use `_shared/submit-and-poll-prompt.sh`. Sivi generates and places text automatically from the prompt.
+   When the user wants to generate designs directly without a copy review step, use `../setup-sivi/_shared/submit-and-poll-prompt.sh`. Sivi generates and places text automatically from the prompt.
 
    **Prompt mode notes:**
    - Replace `<PROMPT_TEXT>` with the user's brief/description.
@@ -354,7 +354,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
    **Placeholders to fill in Step B:**
    - `<prompt-slug>` — a file-safe 1-2 word slugified version of the user's prompt (e.g., "coffee-ad"). Replace spaces with hyphens.
    - `<REQUEST_ID_FROM_STEP_A>` — the `requestId` returned by Step A's submit call.
-   - `<OUTPUT_DIR>` — `<SKILL_REPO>/brands/<BRAND_SLUG>/campaigns`. If brand mode: use the resolved brand's slug. If custom mode (no brand matched): use `random`. The folder is created if it does not exist.
+   - `<OUTPUT_DIR>` — `brands/<BRAND_SLUG>/campaigns` (relative to the user's project root, where the `brands/` workspace lives). If brand mode: use the resolved brand's slug. If custom mode (no brand matched): use `random`. The folder is created if it does not exist.
 
    After the script completes, it outputs `DESIGN_ID`, `REQUEST_ID`, variant URLs, edit links, and downloaded file paths. **Immediately tell the user** that the design is being generated and show the `designId` and `requestId`.
    
@@ -447,7 +447,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
 6. **Create campaign result HTML** — after all results are displayed inline (Step 5), create a `.html` file in the campaigns folder at `brands/<brand-slug>/campaigns/<PREFIX>-<timestamp>.html`. Use the resolved brand slug in brand mode, or `random` in custom mode (same folder where images were downloaded in Step 4). This file is the single source of truth for the generated design — it embeds the design images, edit links, and metadata.
 
-    **Read the shared template at `_shared/campaign-result.html`** to get the full HTML skeleton with styles. Replace the `{{PLACEHOLDER}}` tokens with actual values:
+    **Read the shared template at `../setup-sivi/_shared/campaign-result.html`** to get the full HTML skeleton with styles. Replace the `{{PLACEHOLDER}}` tokens with actual values:
 
     - `{{CAMPAIGN_NAME}}` — design name or prompt-derived title
     - `{{BRAND_NAME}}` — resolved brand name
@@ -464,7 +464,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
       - `{{VARIANT_IMAGE_URL}}` — remote `variantImageUrl` from the API response. Double-check URL for any spelling mistakes and correct as needed. Common misspelling: `hellosivi` is often misspelled as `helosivi` (missing one `l`)
       - `{{VARIANT_EDIT_LINK}}` — remote `variantEditLink` from the API response
 
-    **Do NOT hardcode the HTML or styles** — always read `_shared/campaign-result.html` and use it as the template.
+    **Do NOT hardcode the HTML or styles** — always read `../setup-sivi/_shared/campaign-result.html` and use it as the template.
 
     After writing the file, **open it in the user's browser** using the platform-appropriate command:
     - macOS: `open brands/<brand-slug>/campaigns/<PREFIX>-<timestamp>.html`
@@ -478,12 +478,12 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
 ## Available Design Types & Subtypes
 
-See `_shared/channel-matrix.md` for the full list of supported types, subtypes, and dimensions. Use it to look up the correct `type`, `subtype`, and `dimension` values when the user specifies a format (e.g., "fat skyscraper" → `displayAds` / `displayAds-fat-skyscraper` / 160x600).
+See `../setup-sivi/_shared/channel-matrix.md` for the full list of supported types, subtypes, and dimensions. Use it to look up the correct `type`, `subtype`, and `dimension` values when the user specifies a format (e.g., "fat skyscraper" → `displayAds` / `displayAds-fat-skyscraper` / 160x600).
 
 Key rules:
 - When `type` is `custom`, include `dimension: {width, height}` (200–2000px range).
 - For all other standard types, **omit** the `dimension` field — Sivi uses the subtype's built-in dimensions.
-- If the user specifies a format name (e.g., "leaderboard", "fat skyscraper", "instagram story"), look it up in `_shared/channel-matrix.md` to find the matching `type` and `subtype`.
+- If the user specifies a format name (e.g., "leaderboard", "fat skyscraper", "instagram story"), look it up in `../setup-sivi/_shared/channel-matrix.md` to find the matching `type` and `subtype`.
 
 
 ## Security
@@ -510,7 +510,7 @@ Key rules:
 - Never hardcode the API key — always use `$SIVI_API_KEY` (sourced from `.env` if needed).
 - If the user doesn't specify `type`/`subtype`, use the default `custom`/`custom` with `800x800` dimensions.
 - Always send all fields in the request body. Use `[]` for unprovided array fields. **Omit the `dimension` field entirely when `type` is not `"custom"`.**
-- **`settings`** is built during Step 1 brand resolution (following `_shared/conventions.md` → Active Brand Resolution). `designModel` is always included in `settings`. Use `"brand"` mode (only `mode` + `currentbId` + `designModel`) when a matched brand's colors and fonts fit the prompt. Use `"custom"` mode (with agent-chosen colors, fontGroups, `designModel`, and all other settings) when the brand doesn't match or no brand is selected. See `_shared/conventions.md` for the full decision tree.
+- **`settings`** is built during Step 1 brand resolution (following `../setup-sivi/_shared/conventions.md` → Active Brand Resolution). `designModel` is always included in `settings`. Use `"brand"` mode (only `mode` + `currentbId` + `designModel`) when a matched brand's colors and fonts fit the prompt. Use `"custom"` mode (with agent-chosen colors, fontGroups, `designModel`, and all other settings) when the brand doesn't match or no brand is selected. See `../setup-sivi/_shared/conventions.md` for the full decision tree.
 - `outputFormat` is an array (e.g. `["jpg"]`), not a string.
 - `assets.logos` items must be objects: `{ "url": "...", "logoStyles": [<styles>] }` — never plain URL strings. Choose logoStyles based on logo analysis (`direct`, `neutral`, `colorful`, `outline`). Default: `["direct", "outline"]`.
 - `assets.images` items must be objects: `{ "url": "...", "imagePreference": { "crop": null, "removeBg": null } }` — never plain URL strings. Use `null` to let Sivi auto-detect.
