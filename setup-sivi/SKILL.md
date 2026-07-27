@@ -1,7 +1,7 @@
 ---
 name: setup-sivi
-description: Use once to set up the Sivi skills before generating designs — creates the .env, captures the SIVI_API_KEY, and verifies it works. Also use when the user says 'set up Sivi', 'configure my Sivi API key', 'add my Sivi key', 'Sivi setup', or when another Sivi skill fails with a missing/invalid key (401) or a missing .env. This skill is the canonical home for the shared surface: it holds the one `.env` (API key) and the `_shared/` reference files that every other Sivi skill (generate-design, handle-media, enhance-media, write-copy) points to. Sibling skills never copy these — they resolve this skill's folder at runtime as `$SIVI_HOME`.
-argument-hint: [optional: the Sivi API key to write into .env]
+description: Use once to set up the Sivi skills before generating designs — creates the .env, captures the SIVI_API_KEY, and verifies it works. Also use when the user says 'set up Sivi', 'configure my Sivi API key', 'add my Sivi key', 'Sivi setup', or when another Sivi skill fails with a missing/invalid key (401) or a missing .env. This skill is the canonical home for the shared surface — it holds the one `.env` (API key) and the `_shared/` reference files that every other Sivi skill (generate-design, handle-media, enhance-media, write-copy) points to. Sibling skills never copy these — they resolve this skill's folder at runtime as `$SIVI_HOME`.
+argument-hint: "optional: the Sivi API key to write into .env"
 ---
 
 ## What This Skill Does

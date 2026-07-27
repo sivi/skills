@@ -1,7 +1,7 @@
 ---
 name: enhance-media
 description: Use when someone asks to enhance an image, generate AI images, remove background, improve image quality, or create product shots. Also use when the user mentions 'AI image generation,' 'generate an image,' 'enhance my photo,' 'remove background,' 'improve image quality,' 'make this image better,' 'product shot enhancement,' 'generate background,' 'image enhancement,' 'AI photo,' or 'touch up my image.' Uses Sivi's generate API to create or enhance images using AI models. For uploading existing local files, see brand-assets. For generating designs from prompts, see generate-design.
-argument-hint: [prompt describing the image to generate or enhance, and optional image URL]
+argument-hint: "prompt describing the image to generate or enhance, and optional image URL"
 ---
 
 ## What This Skill Does

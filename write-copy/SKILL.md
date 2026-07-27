@@ -1,7 +1,7 @@
 ---
 name: write-copy
 description: Use when someone asks to generate ad copy, write headlines, create copy suggestions, or draft marketing text — without generating a design. Also use when the user mentions 'copy suggestions,' 'headline ideas,' 'ad copy,' 'write copy for my ad,' 'content for my design,' 'text for my banner,' 'offer text,' 'bullet points for my ad,' 'CTA text,' or 'what should my ad say.' Generates structured copy variations using content expert instructions — no API call needed. Default is 2 variations; user can request more (e.g., 3–4 for A/B testing). Copy is presented in readable format for user review and edit, with JSON output for use in generate-design. For generating designs (which now includes copy generation as step 1), see generate-design.
-argument-hint: [prompt describing the product, offer, or campaign]
+argument-hint: "prompt describing the product, offer, or campaign"
 ---
 
 ## What This Skill Does

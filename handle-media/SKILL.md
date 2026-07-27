@@ -1,7 +1,7 @@
 ---
 name: handle-media
 description: Use when another skill needs to resolve an image source into a Sivi media ID (mId) or media URL. Handles 4 input sources — local file upload, direct image URL, product/webpage URL auto-pick, and AI generation — and returns a unified result (mId + mediaUrl). This is a utility skill referenced by composite skills (generate-design, create-a-plus-content, etc.) to avoid duplicating media handling scripts. For brand-scoped asset management with folder saving, see brand-assets. For standalone AI image generation/enhancement, see enhance-media.
-argument-hint: [image source: file path, image URL, product/webpage URL, or AI generation prompt]
+argument-hint: "image source: file path, image URL, product/webpage URL, or AI generation prompt"
 ---
 
 ## What This Skill Does
