@@ -1,4 +1,4 @@
-> **Private:** Please don't share this document or your API key with anyone else.
+**Private:** Please don't share this document or your API key with anyone else.
 
 # Setting Up Sivi Design Skills
 
@@ -17,21 +17,22 @@ That's it. Everything else installs automatically.
 
 Open Claude Code, open a new folder where you want to work (let's say `sivi-designs`), and paste this in the chat:
 
-```bash
-npx skills add sivi/skills
-```
+
+> **npx skills add sivi/skills**
+
 
 This downloads the design skills into your workspace. When it finishes, you'll have `setup-sivi`, `generate-design`, and a few others.
 
 ---
+# OPEN A NEW CHAT AND FOLLOW THE BELOW INSTRUCTIONS
 
 ## Step 2 — Add your Sivi API key
 
 You add your key **once** and it's saved locally (never shared or uploaded). The easiest way is to let Claude do it — just ask in the chat:
 
-> **Set up Sivi with my API key**
+> **Set up Sivi with my API key: your-api-key**
 
-Claude runs the `setup-sivi` skill, which creates the key file for you, asks for your key, saves it, and verifies it works. Paste your key when prompted.
+Claude runs the `setup-sivi` skill, which creates the key file for you and saves your key.
 
 That's it. Every other Sivi skill finds this key automatically — you never set it up again or repeat it per skill.
 
@@ -49,7 +50,7 @@ export SIVI_API_KEY="paste-your-sivi-key-here"
 
 Save and close. Done.
 
-> **Tip:** Your key stays private — the `.env` file is never committed to git or sent anywhere except Sivi.
+**Tip:** Your key stays private — the `.env` file is never committed to git or sent anywhere except Sivi.
 
 ---
 
@@ -57,21 +58,21 @@ Save and close. Done.
 
 This tells the skills to use Doqfy's real colors, fonts, and logo automatically.
 
-Create the brand folder in your working directory:
+Create the brand folder in your working directory by this chat message
+> **mkdir -p brands/doqfy**
 
-```bash
-mkdir -p brands/doqfy
-```
+Upload the brand.md file to the chat with this message
+> **Put the provided brand.md file inside brands/doqfy/**
+.
 
-Put the provided `brand.md` file inside `brands/doqfy/`.
-
-That's it — the `brand.md` file already contains everything the skills need (Sivi Brand ID, colors, fonts, logo, and sample images).
+That's it — the file already contains everything the skills need (Sivi Brand ID, colors, fonts, logo, and sample images).
 
 ---
 
 # Creating Designs
 
 Open Claude Code in this folder and just ask, in plain English. For example:
+
 
 > Create a LinkedIn post for Doqfy
 >
@@ -89,6 +90,8 @@ Claude will write the copy, pick an on-brand image and logo, generate the design
 - **Use your own copy** — paste exact wording and it'll be used as-is, for example:
 
 > Create a Doqfy LinkedIn ad with headline "Sign Contracts in Minutes" and button "Book a Demo"
+
+**Will Take 3-4 mins deps on the load**
 
 ## Where your designs go
 
