@@ -11,7 +11,7 @@ Skills are installed by users via `npx skills add sivi/skills` (see [skills.sh](
 Skills are organized in three layers:
 
 ### Layer 0 — Foundation
-- **`setup-sivi`** — One-time setup and the **shared home**. Creates the single `.env` (captures `SIVI_API_KEY`, verifies it) and owns the `_shared/` reference files. Every other skill resolves this folder at runtime as `$SIVI_HOME` and sources its `.env` — no copies. Run this before any design/media skill.
+- **`setup-sivi`** — One-time setup and the **shared home**. Creates the single `.env` (captures `SIVI_API_KEY`) and owns the `_shared/` reference files. Every other skill resolves this folder at runtime as `$SIVI_HOME` and sources its `.env` — no copies. Run this before any design/media skill.
 - **`brand-context`** *(coming soon)* — Creates a brand profile via two paths: (A) extract from a URL, or (B) create from name + description. Checks Sivi workspace for existing brands before creating. Registers with Sivi, creates `brands/<slug>/brand.md`. All other skills depend on this.
 
 ### Layer 1 — Atomic engines (single API job)

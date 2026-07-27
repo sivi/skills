@@ -31,7 +31,7 @@ Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, and [17+ other 
 
    > "Set up Sivi with my API key"
 
-   It creates `.env` (from `.env.example`) inside the `setup-sivi` skill, saves your key, and verifies it. Every other Sivi skill finds this one `.env` automatically — you never copy it or configure keys per skill.
+   It creates `.env` (from `.env.example`) inside the `setup-sivi` skill and saves your key. Every other Sivi skill finds this one `.env` automatically — you never copy it or configure keys per skill.
 
    Prefer to do it by hand? Copy `setup-sivi/.env.example` to `setup-sivi/.env` and set your key:
 
@@ -117,7 +117,7 @@ Skills install as flat siblings (`.agents/skills/<skill>/`, mirrored by symlinks
 ```
 skills/
   setup-sivi/                 ← run once; the shared home
-    SKILL.md                  ← env setup + verify
+    SKILL.md                  ← env setup
     .env.example              ← copied to setup-sivi/.env at setup
     _shared/                  ← referenced in place by every skill (no copies)
       conventions.md

@@ -1,6 +1,6 @@
 ---
 name: setup-sivi
-description: Use once to set up the Sivi skills before generating designs — creates the .env, captures the SIVI_API_KEY, and verifies it works. Also use when the user says 'set up Sivi', 'configure my Sivi API key', 'add my Sivi key', 'Sivi setup', or when another Sivi skill fails with a missing/invalid key (401) or a missing .env. This skill is the canonical home for the shared surface — it holds the one `.env` (API key) and the `_shared/` reference files that every other Sivi skill (generate-design, handle-media, enhance-media, write-copy) points to. Sibling skills never copy these — they resolve this skill's folder at runtime as `$SIVI_HOME`.
+description: Use once to set up the Sivi skills before generating designs — creates the .env and captures the SIVI_API_KEY. Also use when the user says 'set up Sivi', 'configure my Sivi API key', 'add my Sivi key', 'Sivi setup', or when another Sivi skill fails with a missing/invalid key (401) or a missing .env. This skill is the canonical home for the shared surface — it holds the one `.env` (API key) and the `_shared/` reference files that every other Sivi skill (generate-design, handle-media, enhance-media, write-copy) points to. Sibling skills never copy these — they resolve this skill's folder at runtime as `$SIVI_HOME`.
 argument-hint: "optional: the Sivi API key to write into .env"
 ---
 
@@ -10,7 +10,6 @@ One-time setup for the Sivi skills. It:
 
 1. Creates `.env` from `.env.example` inside this skill's folder (if it doesn't exist).
 2. Captures the user's `SIVI_API_KEY` and writes it into that `.env`.
-3. Verifies the key with one lightweight authenticated call to `connect.sivi.ai`.
 
 This skill is also the **shared home**. It owns:
 - `.env` — the single API-key file. **Never copied** into other skills; they source it from here.
@@ -98,29 +97,7 @@ print("SIVI_API_KEY written.")
 PY
 ```
 
-If the user prefers to paste the key themselves, tell them to open `$SETUP_DIR/.env` and replace `your-api-key-here` with their key, then re-run verification.
-
-### 3. Verify the key
-
-Source the `.env` and make one lightweight authenticated request. Report the outcome by HTTP status, never printing the key:
-
-```bash
-source "$SETUP_DIR/.env"
-if [ -z "$SIVI_API_KEY" ] || [ "$SIVI_API_KEY" = "your-api-key-here" ]; then
-  echo "No API key set yet. Add your key to $SETUP_DIR/.env"
-else
-  CODE=$(curl -s -o /dev/null -w "%{http_code}" \
-    -H "sivi-api-key: $SIVI_API_KEY" \
-    "https://connect.sivi.ai/api/v1/brands")
-  case "$CODE" in
-    200|201) echo "✅ Sivi key verified. Setup complete." ;;
-    401|403) echo "❌ Key rejected ($CODE). Check the key in $SETUP_DIR/.env." ;;
-    *)       echo "⚠️ Unexpected response ($CODE). Key is set; the API may be unreachable right now." ;;
-  esac
-fi
-```
-
-> If the `/brands` endpoint is not the right verification path for the current API, use any minimal authenticated GET; the goal is only to distinguish a good key (2xx) from a bad key (401/403).
+If the user prefers to paste the key themselves, tell them to open `$SETUP_DIR/.env` and replace `your-api-key-here` with their key.
 
 ## After Setup
 
@@ -129,5 +106,5 @@ Tell the user setup is done and they can now run `generate-design`, `write-copy`
 ## Security Notes
 
 - The key is written only to `$SIVI_HOME/.env`, which is gitignored (`*.env`). It is never copied into other skill folders and never committed.
-- Never print the key back into chat or logs. Report verification by HTTP status only.
+- Never print the key back into chat or logs.
 - The key is only ever sent to `connect.sivi.ai` via the `sivi-api-key` header.
