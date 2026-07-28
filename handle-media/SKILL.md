@@ -295,6 +295,7 @@ Choose dimensions from the table below before calling the generate API. Using un
 
 | Width | Height | Aspect Ratio |
 |-------|--------|-------------|
+| 1024  | 1024   | 1:1         |
 | 1264  | 848    | ~3:2        |
 | 848   | 1264   | ~2:3        |
 | 1200  | 896    | ~4:3        |

@@ -289,9 +289,9 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
       **Then pick the image dimensions from the composition mode chosen in 3.3.2:**
       - **Background mode** (image fills the canvas behind the text) → target the **full design size**. Choose the supported dimension whose aspect ratio is closest to the design's W×H, so the image covers the whole canvas cleanly.
-      - **Contained mode** (image occupies only part of the canvas) → target the **region the image will sit in**, not the whole canvas. If it sits on one side (left/right), target ≈ **half the design width × the full design height**; if it sits top/bottom, target ≈ **the full design width × half the design height**. Choose the supported dimension closest to that region's aspect ratio.
+      - **Contained mode** (image occupies only part of the canvas) → always use **1024×1024** (1:1 square), unless the user asks for a specific size.
 
-      Always snap to the closest value in the **supported dimensions table** in `handle-media/SKILL.md` Source 4 — never send an unsupported dimension (it returns 422). Examples for a 1200×627 LinkedIn post: background mode → 1344×768 (7:4, matches the full design); contained mode with a side image (≈600×627 ≈ 1:1) → 1024×1024; contained mode with a top/bottom image (≈1200×314, very wide) → 1344×768. Pass the chosen dimensions, the prompt text, and the `brandId` (mandatory) to `handle-media`.
+      Always snap to the closest value in the **supported dimensions table** in `handle-media/SKILL.md` Source 4 — never send an unsupported dimension (it returns 422). Examples for a 1200×627 LinkedIn post: background mode → 1344×768 (7:4, matches the full design); contained mode → 1024×1024 (1:1 square, always). Pass the chosen dimensions, the prompt text, and the `brandId` (mandatory) to `handle-media`.
 
       `handle-media` will call `generate` with `model: "nano-banana-3-lite:1k"` and poll until the image is ready. It returns `MEDIA_URL` for the generated image.
 
