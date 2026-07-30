@@ -67,7 +67,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
      - `inspiration` — array of objects: `{ "url": "..." }` — reference/inspiration images that guide the design's overall look, layout, or style. Sivi uses these as visual references, not as content to be placed. Include when the user shares a design they want to emulate or draw inspiration from (e.g., "make it look like this poster", "similar style to this reference").
      - `siviAssets` — array of uploaded media references (optional): `[{ "mId": "<mId from create-media>" }]`. Use this for local files uploaded via the file upload flow (Step 3.1). For public URL assets, use `assets` instead.
    - `designInstructions` — free-form guidance string on visual direction (optional): composition, color palette hints, spacing, mood, or layout. **When present in the user's prompt, capture ALL composition and arrangement details** — element counts, alignment, and positioning (e.g., "three speaker portraits aligned horizontally across the center", "top section features a shield-shaped panel", "event details in the lower-right"). Do NOT drop layout details from the prompt — extract them into `designInstructions` verbatim so they are preserved.
-   - `numOfVariants` — number of variants (1–4) — default: `1`
+   - `numOfVariants` — number of variants (1–4) — default: `4`
    - `outputFormat` — array of formats (allowed values: jpg, png),
    - `language` — language for text elements — default: english (lower case)
    - `settings` — object with design preferences. The exact contents depend on brand resolution (see Step 1). The resolved `settings` object is referred to as `<SETTINGS_OBJECT>` in the payload templates below.
@@ -506,7 +506,7 @@ Key rules:
 - **Two design APIs**: `designs-from-content` (default, always used unless user explicitly opts out) and `designs-from-prompt` (alternative, only when user explicitly requests direct generation from prompt).
 - **Content mode**: The `content` object accepts all Sivi allowed semantics as keys. String semantics → string values, `bulletlist`/`numberedlist` → array of strings, list semantics (`imagetitletextlist`, etc.) → array of objects. The exact text is rendered pixel-faithfully — no rephrasing.
 - **Prompt fidelity**: Enhancing or rephrasing the user's prompt is acceptable, but all user-provided details (headlines, descriptions, button text, brand names, specific wording, etc.) must appear in the content sent to the API. Missing information is a bug.
-- Default `numOfVariants` is `1`. Never exceed `4`.
+- Default `numOfVariants` is `4`. Never exceed `4`.
 - **Variant count tolerance**: The polled response may return fewer variants than `numOfVariants` requested. This is acceptable — proceed and display whatever variants are returned without retrying or erroring.
 - Never hardcode the API key — always use `$SIVI_API_KEY` (sourced from `.env` if needed).
 - If the user doesn't specify `type`/`subtype`, use the default `custom`/`custom` with `800x800` dimensions.

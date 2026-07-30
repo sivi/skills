@@ -131,7 +131,7 @@ The body is markdown documentation that agents consume to learn the API workflow
 - **API key**: Always sourced from the single `.env` in the `setup-sivi` skill folder via `$SIVI_API_KEY` — never hardcoded, never copied per-skill. Skills resolve it through the `$SIVI_HOME` discovery header (see `setup-sivi/SKILL.md`).
 - **Cross-platform**: Scripts must work on macOS, Linux, and Windows (Git Bash / WSL). Never use `head -n -1` or `jq`. Use `python3` for JSON parsing and `curl -o` for response handling.
 - **Per-design execution**: Composites call `generate-design`'s submit-and-poll pattern (`_shared/submit-and-poll-content.sh`) once per design, not batch submission.
-- **numOfVariants**: Default is `1`. Range is 1–4. Never exceed 4.
+- **numOfVariants**: Default is `4`. Range is 1–4. Never exceed 4.
 - **Design APIs**: Two APIs available — `designs-from-content` (copy-first, pixel-faithful text) and `designs-from-prompt` (direct generation, no copy review). Composites default to `designs-from-content`; `generate-design` supports both.
 - **Copy-first workflow**: Composites generate copy (via `_shared/content-generation.md`) before calling `designs-from-content`. The approved copy becomes the `content` object in the payload. When using `designs-from-prompt`, copy generation is skipped.
 - **Credits awareness**: Composites estimate design count before submitting and surface 402 errors clearly.

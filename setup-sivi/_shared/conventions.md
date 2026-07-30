@@ -88,7 +88,7 @@ Renders approved copy pixel-faithfully — the exact text in `content` is what a
   "assets": {"images": [...], "logos": [...], "icons": [...]},
   "siviAssets": [{"mId": "..."}],
   "language": "english",
-  "numOfVariants": 1,
+  "numOfVariants": 4,
   "outputFormat": ["jpg"],
   "settings": {"mode": "brand", "currentbId": "<brandId>", "designModel": "sivi-gen-3h-preview"}
 }
@@ -114,7 +114,7 @@ Generates designs directly from a text prompt without requiring approved copy. S
   "assets": {"images": [...], "logos": [...], "icons": [...]},
   "siviAssets": [{"mId": "..."}],
   "language": "english",
-  "numOfVariants": 1,
+  "numOfVariants": 4,
   "outputFormat": ["jpg"],
   "settings": {"mode": "brand", "currentbId": "<brandId>", "designModel": "sivi-gen-3h-preview"}
 }

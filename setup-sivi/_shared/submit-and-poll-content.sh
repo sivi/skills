@@ -56,7 +56,7 @@ data = {
     # Include only when the prompt describes positioning, arrangement, element counts,
     # alignment, spacing, or mood. Omit entirely otherwise (do not send an empty string).
     # "designInstructions": "three speaker portraits aligned horizontally across the center; event details in the lower-right",
-    "numOfVariants": 1,
+    "numOfVariants": 4,
     "outputFormat": ["jpg"],
     "language": "english",
     # assets.inspiration[] holds reference images that guide overall look/layout/style.

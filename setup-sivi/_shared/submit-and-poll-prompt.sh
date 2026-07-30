@@ -51,7 +51,7 @@ data = {
     # Include only when the prompt describes positioning, arrangement, element counts,
     # alignment, spacing, or mood. Omit entirely otherwise.
     # "designInstructions": "three speaker portraits aligned horizontally across the center",
-    "numOfVariants": 1,
+    "numOfVariants": 4,
     "outputFormat": ["jpg"],
     "language": "english",
     "assets": {"images": [], "logos": [], "icons": [], "inspiration": []},

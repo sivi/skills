@@ -1,20 +1,6 @@
 # Sivi — Brand Marketing Skills for AI Agents
 
-A skill system for AI agents (Claude Code, Cursor, Copilot, Windsurf, Cline, etc.) to generate production-ready design assets and manage brand marketing campaigns using [Sivi](https://sivi.ai)'s Large Design Model (LDM).
-
-## Skills
-
-| Skill | Purpose | Trigger Examples | Status |
-|---|---|---|---|
-| **brand-context** | Extract brand identity from a website URL, register with Sivi, save to `brands/<slug>/brand.md` | "Set up my brand", "extract brand from URL", "brand setup" | Coming soon |
-| **generate-design** | Orchestrates: copy generation → media enhancement (optional) → design generation via Sivi API. Supports prompt mode and content mode | "Create an Instagram post", "make a Facebook ad", "design from my copy" | Available |
-| **write-copy** | Generate 2 structured copy variations only (no API, no design). For standalone copy needs | "Write ad copy", "headline ideas", "just the copy" | Available |
-| **handle-media** | Lightweight image resolver: resolves local files, image URLs, product/webpage URLs, or AI generation into Sivi media references | "Resolve this image", "upload photo for design" | Available |
-| **enhance-media** | AI image generation and enhancement (background removal, quality improvement) | "Enhance my photo", "generate an image", "remove background" | Available |
-| **brand-assets** | Upload local files to Sivi via presigned URL, register in media library | "Upload image", "add logo to brand", "use local file for design" | Coming soon |
-| **manage-brand** | List, update, switch, or archive brand profiles | "List my brands", "update brand colors", "switch brand" | Coming soon |
-| **create-campaign** | One brief → complete multi-channel creative set (IG, FB, LinkedIn, YouTube, email, display) | "Multi-channel campaign", "ads for all platforms", "creative set" | Coming soon |
-| **create-a-plus-content** | Product brief → complete Amazon A+ content module set (logo, hero, features, comparison, lifestyle, specs) | "Amazon A+ content", "EBC", "enhanced brand content", "A+ modules" | Coming soon |
+A skill system for AI agents (Claude Code, Cursor, Copilot, Windsurf, Cline, etc.) to generate fully-editable, production-ready design assets and manage brand marketing campaigns using [Sivi](https://sivi.ai)'s Large Design Model (LDM).
 
 ## Installation
 
@@ -38,6 +24,20 @@ Works with Claude Code, Cursor, GitHub Copilot, Windsurf, Cline, and [17+ other 
 ```bash
 export SIVI_API_KEY="your-api-key-here"
 ```
+
+## Skills
+
+| Skill | Purpose | Trigger Examples | Status |
+|---|---|---|---|
+| **brand-context** | Extract brand identity from a website URL, register with Sivi, save to `brands/<slug>/brand.md` | "Set up my brand", "extract brand from URL", "brand setup" | Coming soon |
+| **generate-design** | Orchestrates: copy generation → media enhancement (optional) → design generation via Sivi API. Supports prompt mode and content mode | "Create an Instagram post", "make a Facebook ad", "design from my copy" | Available |
+| **write-copy** | Generate 2 structured copy variations only (no API, no design). For standalone copy needs | "Write ad copy", "headline ideas", "just the copy" | Available |
+| **handle-media** | Lightweight image resolver: resolves local files, image URLs, product/webpage URLs, or AI generation into Sivi media references | "Resolve this image", "upload photo for design" | Available |
+| **enhance-media** | AI image generation and enhancement (background removal, quality improvement) | "Enhance my photo", "generate an image", "remove background" | Available |
+| **brand-assets** | Upload local files to Sivi via presigned URL, register in media library | "Upload image", "add logo to brand", "use local file for design" | Coming soon |
+| **manage-brand** | List, update, switch, or archive brand profiles | "List my brands", "update brand colors", "switch brand" | Coming soon |
+| **create-campaign** | One brief → complete multi-channel creative set (IG, FB, LinkedIn, YouTube, email, display) | "Multi-channel campaign", "ads for all platforms", "creative set" | Coming soon |
+| **create-a-plus-content** | Product brief → complete Amazon A+ content module set (logo, hero, features, comparison, lifestyle, specs) | "Amazon A+ content", "EBC", "enhanced brand content", "A+ modules" | Coming soon |
 
 ## Quick Start
 
