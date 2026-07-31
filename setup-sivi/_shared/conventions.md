@@ -70,7 +70,7 @@ Add `"designModel": "sivi-gen-3h-preview"` inside the `settings` object of every
 
 ## Design Generation APIs
 
-Two APIs are available for design generation. Composites default to `designs-from-content` (copy-first workflow). `generate-design` supports both.
+Two APIs are available for design generation. Composites default to `designs-from-content` (copy-first workflow). `generate-design` supports both. **Use `designs-from-prompt` only when the user explicitly requests prompt mode.**
 
 ### `designs-from-content` (default — copy-first)
 

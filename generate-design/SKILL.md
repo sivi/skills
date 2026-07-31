@@ -86,6 +86,8 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
    If `prompt` is missing, ask the user: "What should the design be about? Please describe it briefly."
 
+   - **Design API** — resolve before Step 1. Default is `designs-from-content`. Use `designs-from-prompt` only when the user explicitly requests prompt mode.
+
 ## Steps
 
 1. **Resolve brand and build `settings`** — Brand resolution is **mandatory** before handling assets or generating copy. This step produces the `<SETTINGS_OBJECT>` used in the payload templates (Step 4A / 4B).
@@ -312,7 +314,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
 4. **Submit design and poll** — Submit the design to the Sivi API and poll for completion in a **single bash tool call**. Never use WebFetch (it cannot send custom headers and will always return 401).
 
-   **Always use `designs-from-content` (the default) unless the user explicitly asks for `designs-from-prompt`.** The full workflow — copy generation (Step 2.2), image generation (Step 3.3), and design submission — always uses `designs-from-content`. Only switch to `designs-from-prompt` when the user explicitly requests direct generation directly from prompt.
+   **The design API was resolved in Input Arguments — do not re-decide.** Use `designs-from-content` by default. Use `designs-from-prompt` only when the user explicitly requested prompt mode.
 
    **Use the canonical script template in `../setup-sivi/_shared/`.** Two self-contained scripts are available:
    - **`../setup-sivi/_shared/submit-and-poll-content.sh`** — `designs-from-content` submit + poll + download (default). Use when the user has approved copy.
@@ -500,10 +502,10 @@ Key rules:
 
 ## Notes
 
-- **Always use `designs-from-content` unless the user explicitly asks for `designs-from-prompt`.** The default workflow always generates copy first (Step 2.2), optionally generates images (Step 3.3), then calls `designs-from-content` with the approved copy + assets. Only use `designs-from-prompt` when the user explicitly requests direct generation from prompt.
-- **4-step orchestration**: generate-design always (1) generates one copy via step 2.2 without user review (skip if user provides approved copy or explicitly chooses `designs-from-prompt`), (2) optionally enhances images via step 3.2, (3) optionally generates one image via step 3.3 when no assets are provided (auto-chooses prompt mode, no user review), (4) calls `designs-from-content` with the copy + assets (or `designs-from-prompt` only if explicitly requested).
+- **`designs-from-content` is the hard default.** Use `designs-from-prompt` only when the user explicitly requests prompt mode.
+- **4-step orchestration**: generate-design always (1) generates one copy via step 2.2 without user review (skip only if the user provides approved copy, or prompt mode was requested), (2) optionally enhances images via step 3.2, (3) optionally generates one image via step 3.3 when no assets are provided, (4) calls `designs-from-content` with the copy + assets (or `designs-from-prompt` if prompt mode was requested).
 - **Minimal questions**: The skill minimizes user interactions. Custom settings are auto-chosen (no questions about colors/theme/etc.). Copy is generated as a single variation without review. Image generation produces one image with an auto-chosen prompt mode (background or contained) without prompt review or image selection. The only question asked during image generation is whether the user wants AI-generated images when none were provided.
-- **Two design APIs**: `designs-from-content` (default, always used unless user explicitly opts out) and `designs-from-prompt` (alternative, only when user explicitly requests direct generation from prompt).
+- **Two design APIs**: `designs-from-content` (hard default) and `designs-from-prompt` (only when the user explicitly requests prompt mode).
 - **Content mode**: The `content` object accepts all Sivi allowed semantics as keys. String semantics → string values, `bulletlist`/`numberedlist` → array of strings, list semantics (`imagetitletextlist`, etc.) → array of objects. The exact text is rendered pixel-faithfully — no rephrasing.
 - **Prompt fidelity**: Enhancing or rephrasing the user's prompt is acceptable, but all user-provided details (headlines, descriptions, button text, brand names, specific wording, etc.) must appear in the content sent to the API. Missing information is a bug.
 - Default `numOfVariants` is `4`. Never exceed `4`.
