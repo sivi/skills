@@ -137,6 +137,13 @@
     .design-grid {
       grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     }
+
+    /* Large-format designs (roughly 700px wide and up) get a full row each,
+       so they are not shrunk further than they have to be. The generator
+       should add this class to the .design-grid of any such group. */
+    .design-grid--wide {
+      grid-template-columns: 1fr;
+    }
   }
 
   .design-card {
@@ -153,20 +160,28 @@
     border-color: rgba(108,99,255,0.2);
   }
 
+  /* Designs render at their true pixel size when they fit, and scale down
+     only when they are wider than the card. Never upscale — a 300x250 ad
+     must look like a 300x250 ad. */
   .design-card-image {
     position: relative;
-    overflow: hidden;
-    background: #000;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 140px;
+    background:
+      repeating-conic-gradient(rgba(255,255,255,0.028) 0% 25%, transparent 0% 50%)
+      50% / 16px 16px;
   }
 
   .design-card-image img {
-    width: 100%;
+    width: auto;
+    max-width: 100%;
+    height: auto;
     display: block;
-    transition: transform 0.4s ease;
-  }
-
-  .design-card:hover .design-card-image img {
-    transform: scale(1.02);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.10), var(--shadow-sm);
   }
 
   .design-card-body {

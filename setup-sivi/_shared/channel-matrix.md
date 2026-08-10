@@ -98,7 +98,7 @@ Full list of channels and formats supported by Sivi, organized by platform.
 
 | Format | Type | Subtype | Dimensions |
 |---|---|---|---|
-| Custom | custom | custom | Any (200-2000px range) |
+| Custom | custom | custom | Any (50-2000px range) |
 
 ## Campaign Channel Recommendations
 

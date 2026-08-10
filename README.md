@@ -108,7 +108,7 @@ The HTML file is the single source of truth — open it in any browser to see al
 | Amazon | Ad, Fullscreen, Square, Rectangle, Standard |
 | Website | Rectangle, Square, Fullscreen HD, Half-page, Hello Bar |
 | Email | Square, Tall, Rectangle, Wide, Small |
-| Custom | Any width × height (200–2000px) |
+| Custom | Any width × height (50–2000px) |
 
 ## Structure
 
