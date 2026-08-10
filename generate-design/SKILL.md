@@ -69,7 +69,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
    - `designInstructions` — free-form guidance string on visual direction (optional): composition, color palette hints, spacing, mood, or layout. **Always a single string** — never an array and never one string per inspiration or per block. It has two sources, merged into that one string:
      - **The user's prompt** — **capture ALL composition and arrangement details** present in it: element counts, alignment, and positioning (e.g., "three speaker portraits aligned horizontally across the center", "top section features a shield-shaped panel", "event details in the lower-right"). Do NOT drop layout details from the prompt — extract them into `designInstructions` verbatim so they are preserved.
      - **The resolved inspiration** — when Step 1.3 resolves an inspiration, Step 2.3 requires you to read the image and describe its layout in this same string. Prompt details win wherever the two conflict.
-   - `numOfVariants` — number of variants (1–4) — default: `4`
+   - `numOfVariants` — number of variants (1–4) — default: `4` for a single size, **`1` when the request covers multiple sizes** (see Step 4). Raise it only if the user asks for options at every size.
    - `outputFormat` — array of formats (allowed values: jpg, png),
    - `language` — language for text elements — default: english (lower case)
    - `settings` — object with design preferences. The exact contents depend on brand resolution (see Step 1). The resolved `settings` object is referred to as `<SETTINGS_OBJECT>` in the payload templates below.
@@ -347,6 +347,8 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
 
    Everything else is built once and reused across all of them: `content`, `assets`, `siviAssets`, `settings`. In particular **upload each local asset once** and reuse its `mId` in every payload — never re-upload the same file per size.
 
+   **Default `numOfVariants` to `1` for a multi-size request** (the single-size default of `4` would mean 4×N designs to review and pay for, when the point of a size set is one usable creative per placement). Raise it only when the user asks for options at every size. Note this caps variants, not images: Sivi may still return an `options[]` entry per variant, so expect roughly two images per size at `numOfVariants: 1` — show them all per the display contract in Step 5.
+
    **Run them in parallel.** Issue all N submissions concurrently, in one response. Each is its own bash tool call, so they poll independently and one failing cannot kill the others. The batch then costs about as long as its slowest size rather than the sum of all of them.
 
    **Never let one failure hold the batch.** Do not wait for every size to succeed before reporting. Once the last submission settles, deliver whatever landed:
@@ -552,7 +554,7 @@ Key rules:
 - **Two design APIs**: `designs-from-content` (hard default) and `designs-from-prompt` (only when the user explicitly requests prompt mode).
 - **Content mode**: The `content` object accepts all Sivi allowed semantics as keys. String semantics → string values, `bulletlist`/`numberedlist` → array of strings, list semantics (`imagetitletextlist`, etc.) → array of objects. The exact text is rendered pixel-faithfully — no rephrasing.
 - **Prompt fidelity**: Enhancing or rephrasing the user's prompt is acceptable, but all user-provided details (headlines, descriptions, button text, brand names, specific wording, etc.) must appear in the content sent to the API. Missing information is a bug.
-- Default `numOfVariants` is `4`. Never exceed `4`.
+- Default `numOfVariants` is `4` for a single size and **`1` for a multi-size request**. Never exceed `4`.
 - **Variant count tolerance**: The polled response may return fewer variants than `numOfVariants` requested. This is acceptable — proceed and display whatever variants are returned without retrying or erroring.
 - Never hardcode the API key — always use `$SIVI_API_KEY` (sourced from `.env` if needed).
 - If the user doesn't specify `type`/`subtype`, use the default `custom`/`custom` with `800x800` dimensions.
