@@ -187,7 +187,7 @@ RESPONSE=$(curl -s -w '\n%{http_code}' ...); BODY=$(echo "$RESPONSE" | head -n -
    - If the URL or filename contains words like "icon", "symbol", "badge" — classify as **icon**.
    - If the user explicitly calls it a reference, inspiration, or "make it look like" — classify as **inspiration**.
    - If unsure, default to **image**.
-   - Maximum **5 assets total** (images + logos + icons combined). Inspiration images are separate and do not count toward this limit. If the user provides more than 5 non-inspiration assets, use the first 5 and inform them of the limit.
+   - Maximum **10 assets total** (images + logos + icons combined). Inspiration images are separate and do not count toward this limit. If the user provides more than 10 non-inspiration assets, use the first 10 and inform them of the limit.
 
    **Asset routing summary:**
    - **Public image URL assets** → go into `assets.images[]` or `assets.logos[]` in the design payload directly (no API call needed)
